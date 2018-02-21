@@ -1,0 +1,10 @@
+# python
+*.py[cod]
+
+# PyCharm
+.idea/
+__pycache__/
+
+# Project
+settings.py
+migrations

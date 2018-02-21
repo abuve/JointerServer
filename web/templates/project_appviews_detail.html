@@ -1,0 +1,251 @@
+<div class="row" style="padding: 10px 8px;">
+    <div class="col-md-5">
+        <!-- 基础信息 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Basic Info</h3>
+            </div>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <td style="width: 150px;">
+                        <strong>Application Name</strong>
+                    </td>
+                    <td>
+                        {{ response.data.name }}
+                    </td>
+                    <td style="width: 150px;">
+                        <strong>System Name</strong>
+                    </td>
+                    <td>
+                        {{ response.data.project_id.name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">
+                        <strong>Application Type</strong>
+                    </td>
+                    <td>
+                        {{ response.data.get_app_type_display }}
+                    </td>
+                    <td style="width: 150px;">
+                        <strong>Nusiness Unit</strong>
+                    </td>
+                    <td>
+                        {{ response.data.project_id.business_unit.name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">
+                        <strong>OM</strong>
+                    </td>
+                    <td colspan="3">
+                        admin1, admin2
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">
+                        <strong>DEV</strong>
+                    </td>
+                    <td colspan="3">
+                        User1, User2
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 应用日志地址 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Logs Url</h3>
+            </div>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <th style="width: 20%;">
+                        Group Name
+                    </th>
+                    <th style="width: 20%;">
+                        Group Tag
+                    </th>
+                    <th>
+                        Http Url
+                    </th>
+                </tr>
+                {% for group_obj in response.data.groups.all %}
+                    {% for log_obj in group_obj.webconfiglogscenter.all %}
+                        <tr>
+                            <td>
+                                {{ group_obj.name }}
+                            </td>
+                            <td>
+                                real
+                            </td>
+                            <td style="width: 150px;">
+                                <a href="{{ log_obj.url }}" target="_blank">{{ log_obj.url }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 资产信息展示 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">App Asset Information</h3>
+            </div>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <th style="width: 20%;">
+                        Group Name
+                    </th>
+                    <th style="width: 20%;">
+                        Group Tag
+                    </th>
+                    <th>
+                        IP
+                    </th>
+                    <th>
+                        HostName
+                    </th>
+                    <th>
+                        IDC
+                    </th>
+                </tr>
+                {% for group_obj in response.data.groups.all %}
+                    {% for asset_obj in group_obj.instance.all %}
+                        <tr>
+                            <td>
+                                {{ group_obj.name }}
+                            </td>
+                            <td>
+                                real
+                            </td>
+                            <td>
+                                {{ asset_obj.server.ipaddress }}
+                            </td>
+                            <td>
+                                {{ asset_obj.server.hostname }}
+                            </td>
+                            <td>
+                                {{ asset_obj.idc.name }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Docker信息展示 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">App Docker Instance</h3>
+            </div>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <th>
+                        Group Name
+                    </th>
+                    <th>
+                        Group Tag
+                    </th>
+                    <th>
+                        Host IP
+                    </th>
+                    <th>
+                        Host Port
+                    </th>
+                    <th>
+                        Container Name
+                    </th>
+                </tr>
+                {% for group_obj in response.data.groups.all %}
+                    {% for docker_obj in group_obj.docker.all %}
+                        <tr>
+                            <td>
+                                {{ group_obj.name }}
+                            </td>
+                            <td>
+                                real
+                            </td>
+                            <td>
+                                {{ docker_obj.asset.server.ipaddress }}
+                            </td>
+                            <td>
+                                {{ docker_obj.port }}
+                            </td>
+                            <td>
+                                {{ docker_obj.name }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="col-md-7">
+        <!-- URL 映射关系 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Url Maps</h3>
+            </div>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <th>
+                        Group Tag
+                    </th>
+                    <th>
+                        Http URL
+                    </th>
+                    <th>
+                        Cloud Server
+                    </th>
+                    <th>
+                        Forward Server(Ha/Nginx)
+                    </th>
+                    <th>
+                        App Instance
+                    </th>
+                </tr>
+                {% for group_obj in response.data.groups.all %}
+                    {% for url_obj in group_obj.urlconfighandler.all %}
+                        <tr>
+                            <td>
+                                Real
+                            </td>
+                            <td>
+                                <a href="{{ url_obj.url }}" target="_blank">{{ url_obj.url }}</a>
+                            </td>
+                            <td>
+                                {% for asset_obj in url_obj.cloud.all  %}
+                                    {{ asset_obj.server.ipaddress }} <br />
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for asset_obj in url_obj.forward.all  %}
+                                    {{ asset_obj.server.ipaddress }} <br />
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for docker_obj in url_obj.docker.all  %}
+                                    {{ docker_obj.asset.server.ipaddress }}:{{ docker_obj.port }} <br />
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

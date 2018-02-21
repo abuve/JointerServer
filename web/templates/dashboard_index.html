@@ -1,0 +1,189 @@
+{% extends 'layout/_layout.html' %}
+
+{% block css %}
+
+    <link rel="stylesheet" href="/static/css/dashboard.css" type="text/css">
+    <link rel="stylesheet" href="/static/plugins/ztree/css/metroStyle/metroStyle.css" type="text/css">
+
+    <style type="text/css">
+        .ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
+    </style>
+
+    <style type="text/css">
+        .green {
+            color: #1ABB9C;
+        }
+
+        .tile_count {
+            color: #73879C;
+        }
+    </style>
+
+{% endblock %}
+
+{% block conent %}
+
+    <div style="padding: 10px 12px;">
+
+        <div class="col-md-8">
+            <div class="row tile_count">
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> 物理机总数</span>
+                    <div class="count">56</div>
+                    <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> Cloud云主机总数</span>
+                    <div class="count">256</div>
+                    <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-clock-o"></i> Docker实例总数</span>
+                    <div class="count">306</div>
+                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> 业务线</span>
+                    <div class="count green">36</div>
+                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> 项目总数</span>
+                    <div class="count">12</div>
+                    <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> 应用总数</span>
+                    <div class="count">36</div>
+                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                </div>
+            </div>
+
+            <div class="row">
+                111
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                    <h2>内部系统导航</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="x_content" style="display: block;">
+                        <div class="dashboard-widget-content">
+                            <ul class="quick-list">
+                                <li><i class="fa fa-calendar-o"></i><a href="#">数据分析系统</a>
+                                </li>
+                                <li><i class="fa fa-bars"></i><a href="#">Jenkins（OM）</a>
+                                </li>
+                                <li><i class="fa fa-bar-chart"></i><a href="#">Jenkins（Dev）</a> </li>
+                                <li><i class="fa fa-line-chart"></i><a href="#">OM-Tools & Monitoring</a>
+                                </li>
+                                <li><i class="fa fa-bar-chart"></i><a href="#">Zabbix监控</a> </li>
+                                <li><i class="fa fa-line-chart"></i><a href="#">Argus</a>
+                                </li>
+                                <li><i class="fa fa-area-chart"></i><a href="#">Grafana</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="x_content" style="display: block;">
+                        <div class="dashboard-widget-content">
+                            <ul class="quick-list">
+                                <li><i class="fa fa-calendar-o"></i><a href="#">Settings</a>
+                                </li>
+                                <li><i class="fa fa-bars"></i><a href="#">Subscription</a>
+                                </li>
+                                <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
+                                <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
+                                </li>
+                                <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
+                                <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
+                                </li>
+                                <li><i class="fa fa-area-chart"></i><a href="#">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="padding: 0px 15px">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 项目Wiki</div>
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                        <tr>
+                            <th nowrap="nowrap">
+                                项目名称
+                            </th>
+                            <th nowrap="nowrap">
+                                Wiki名称
+                            </th>
+                            <th nowrap="nowrap">
+                                创建时间
+                            </th>
+                            <th nowrap="nowrap">
+                                创建用户
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>FPMS</td>
+                            <td>业务架构拓扑图</td>
+                            <td>2018-02-21 13:25:58</td>
+                            <td>aaron.bu</td>
+                        </tr>
+                        <tr>
+                            <td>FPMS</td>
+                            <td>业务架构拓扑图</td>
+                            <td>2018-02-21 13:25:58</td>
+                            <td>aaron.bu</td>
+                        </tr>
+                        <tr>
+                            <td>FPMS</td>
+                            <td>业务架构拓扑图</td>
+                            <td>2018-02-21 13:25:58</td>
+                            <td>aaron.bu</td>
+                        </tr>
+                        <tr>
+                            <td>FPMS</td>
+                            <td>业务架构拓扑图</td>
+                            <td>2018-02-21 13:25:58</td>
+                            <td>aaron.bu</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/cores.js"></script>
+
+    <script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.excheck.js"></script>
+	<script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.exedit.js"></script>
+
+    <script>
+        $(function () {
+            $.initMenu('#menu_cmdb_server_list');
+            $.nbDataList('/cmdb/server-json.html');
+        });
+
+    </script>
+{% endblock %}

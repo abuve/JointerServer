@@ -1,0 +1,94 @@
+<style>
+    .dotted {
+        border-top: 1px dotted #ddd;
+    }
+
+    .text-left {
+        text-align: left !important;
+    }
+</style>
+<div class="form-horizontal clearfix" style="margin-top:20px;">
+
+    <div class="form-group col-md-6">
+        <div class="col-md-4 control-label">HostName：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.server.hostname }}</div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <div class="col-md-4 control-label">IDRAC：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.server.manage_ip }}</div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <div class="col-md-4 control-label">SN：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.sn }}</div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <div class="col-md-4 control-label">Status：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.device_status_id }}</div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <div class="col-md-4 control-label">Asset Number：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.asset_num }}</div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <div class="col-md-4 control-label">Update Date：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.latest_date|date:"Y-m-d H:m:s" }}</div>
+    </div>
+
+    <div class="dotted  col-md-12"></div>
+
+    <div class="form-group col-md-6">
+        <div class="col-md-4 control-label">IDC：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.idc.name }}</div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <div class="col-md-4 control-label">Floor：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.idc.floor }}</div>
+    </div>
+
+    <!--<div class="form-group col-md-6">
+        <div class="col-md-4 control-label">机柜：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.asset.cabinet_num }}</div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <div class="col-md-4 control-label">柜上位置：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.asset.cabinet_order }}</div>
+    </div>-->
+
+    <div class="dotted col-md-12"></div>
+
+    <div class="form-group col-md-6">
+        <div class="col-md-4 control-label">Business Unit：</div>
+        <div class="col-md-7 control-label text-left">{{ response.data.business_unit.name }}</div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="form-group col-md-6">
+            <div class="col-md-4 control-label">Business Contacts：</div>
+            <div class="col-md-8 control-label text-left">
+
+                {% for group_obj in response.data.business_unit.contact.all %}
+                    {% for user_obj in group_obj.users.all %}
+                        <div>
+                            <p>{{ user_obj.username }}</p>
+                            <div style="margin-left: 20px;">
+                                <p>Email: {{ user_obj.email }}</p>
+                                <p>Phone: {{ user_obj.phone }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

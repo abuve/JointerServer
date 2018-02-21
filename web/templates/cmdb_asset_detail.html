@@ -1,0 +1,65 @@
+{% extends 'layout/_layout.html' %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block conent %}
+    <ol class="breadcrumb" style="margin-bottom: 0;">
+        <div class='btn-group btn-group-xs'>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/cmdb/server-list.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  Asset Infomation</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{ response.data.server.ipaddress }}</a>
+        </div>
+    </ol>
+    <div style="padding: 5px 8px;">
+
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a class="no-radius" href="#basic" aria-controls="basic" role="tab"
+                                                          data-toggle="tab">基本信息</a></li>
+                <li role="presentation"><a class="no-radius" href="#hardware" aria-controls="hardware" role="tab"
+                                           data-toggle="tab">硬件信息</a></li>
+                <li role="presentation"><a class="no-radius" href="#log" aria-controls="log" role="tab"
+                                           data-toggle="tab">变更记录</a></li>
+
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="basic">
+                    {% include 'include/asset_basic.html' %}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="hardware">
+                    {% include 'include/asset_server_hardware.html' %}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="log">
+                    {% include 'include/asset_log.html' %}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/cores.js"></script>
+
+
+    <script>
+        $(function () {
+            $.initMenu('#menu_asset');
+
+        });
+
+
+    </script>
+{% endblock %}

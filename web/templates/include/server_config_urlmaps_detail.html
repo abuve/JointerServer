@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped">
+    <tbody>
+    <tr>
+        <th nowrap="nowrap">
+            Http URL
+        </th>
+        <th nowrap="nowrap">
+            Cloud Server
+        </th>
+        <th nowrap="nowrap">
+            Forward Server(Ha/Nginx)
+        </th>
+        <th nowrap="nowrap">
+            App Instance
+        </th>
+    </tr>
+        <tr>
+            <td>
+                <a href="{{ response.data.url }}" target="_blank">{{ response.data.url }}</a>
+            </td>
+            <td>
+                {% for asset_obj in response.data.cloud.all  %}
+                    {{ asset_obj.server.ipaddress }} <br />
+                {% endfor %}
+            </td>
+            <td>
+                {% for asset_obj in response.data.forward.all  %}
+                    {{ asset_obj.server.ipaddress }} <br />
+                {% endfor %}
+            </td>
+            <td>
+                {% for docker_obj in response.data.docker.all  %}
+                    {{ docker_obj.asset.server.ipaddress }}:{{ docker_obj.port }} <br />
+                {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+</table>

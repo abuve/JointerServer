@@ -1,0 +1,161 @@
+{% extends 'layout/_layout.html' %}
+
+{% block css %}
+
+
+{% endblock %}
+
+{% block conent %}
+
+    <ol class="breadcrumb" style="margin-bottom: 0;">
+        <div class='btn-group btn-group-xs'>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/project.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Project</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'project-projectviews' response.data.id %}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> ProjectViews</a>
+        </div>
+    </ol>
+
+{#    <div class="row" style="padding: 10px 8px;">#}
+{#        <div class="col-md-12">#}
+{#            <div class="alert alert-success" role="alert">#}
+{#                <strong>FPMS</strong>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+    <div class="row" style="padding: 10px 8px;">
+        <div class="col-md-12">
+            <!-- 应用日志地址 -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ response.data.name }} Logs Url</h3>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <th style="width: 20%;">
+                            App Name
+                        </th>
+                        <th style="width: 20%;">
+                            Group Name
+                        </th>
+                        <th style="width: 20%;">
+                            Group Tag
+                        </th>
+                        <th>
+                            Http Url
+                        </th>
+                    </tr>
+
+                    {% for app_obj in response.data.applications.all %}
+                        {% for group_obj in app_obj.groups.all %}
+                            {% for log_obj in group_obj.webconfiglogscenter.all %}
+                                <tr>
+                                    {% if forloop.counter == 1 %}
+                                        <td rowspan="{{ group_obj.webconfiglogscenter.all.count }}">
+                                            {{ app_obj.name }}
+                                        </td>
+                                    {% endif %}
+                                    <td>
+                                        {{ group_obj.name }}
+                                    </td>
+                                    <td>
+                                        real
+                                    </td>
+                                    <td style="width: 150px;">
+                                        <a href="{{ log_obj.url }}" target="_blank">{{ log_obj.url }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+            <!-- URL 映射关系 -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ response.data.name }} Url Maps</h3>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <th>
+                            App Name
+                        </th>
+                        <th>
+                            Group Tag
+                        </th>
+                        <th>
+                            Http URL
+                        </th>
+                        <th>
+                            Cloud Server
+                        </th>
+                        <th>
+                            Forward Server(Ha/Nginx)
+                        </th>
+                        <th>
+                            App Instance
+                        </th>
+                    </tr>
+                    {% for app_obj in response.data.applications.all %}
+                        {% for group_obj in app_obj.groups.all %}
+                            {% for url_obj in group_obj.urlconfighandler.all %}
+                                <tr>
+                                    {% if forloop.counter == 1 %}
+                                        <td rowspan="{{ group_obj.urlconfighandler.all.count }}">
+                                            {{ app_obj.name }}
+                                        </td>
+                                    {% endif %}
+                                    <td>
+                                        {{ group_obj.name }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ url_obj.url }}" target="_blank">{{ url_obj.url }}</a>
+                                    </td>
+                                    <td>
+                                        {% for asset_obj in url_obj.cloud.all  %}
+                                            {{ asset_obj.server.ipaddress }} <br />
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for asset_obj in url_obj.forward.all  %}
+                                            {{ asset_obj.server.ipaddress }} <br />
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for docker_obj in url_obj.docker.all  %}
+                                            {{ docker_obj.asset.server.ipaddress }}:{{ docker_obj.port }} <br />
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/cores.js"></script>
+    <script type="text/javascript" src="/static/js/project-list.js"></script>
+
+    <script>
+        $(function () {
+            $.initMenu('#menu_project');
+            default_appviews_detail_fn({{ response.data.applications.all.0.id }})
+        });
+
+    </script>
+{% endblock %}

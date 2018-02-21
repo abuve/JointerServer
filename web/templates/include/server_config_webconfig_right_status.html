@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+    <div class="panel-heading">版本更新备注</div>
+    <div class="panel-body">
+        {{ response.current_version_status.memo }}
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">发布列表</div>
+    <table class="table table-bordered table-striped">
+        <tbody>
+        {% for instance_obj in response.current_version_status.webconfigip.all %}
+            <tr>
+                <td>
+                    {{ instance_obj.ip }}
+                </td>
+                <td>
+                    {% ifequal instance_obj.status 0 %}
+                        <a type="button" class="btn btn-warning btn-xs">未知</a>
+                    {% endifequal %}
+                    {% ifequal instance_obj.status 1 %}
+                        <a type="button" class="btn btn-success btn-xs">成功</a>
+                    {% endifequal %}
+                    {% ifequal instance_obj.status 2 %}
+                        <a type="button" class="btn btn-danger btn-xs">失败</a>
+                    {% endifequal %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">发布动态</div>
+    <table class="table table-bordered table-striped">
+        <tbody>
+        <tr>
+            <th>
+                版本
+            </th>
+            <th>
+                操作
+            </th>
+        </tr>
+        {% for date_obj in response.all_version_from_server %}
+            <tr>
+                <td>
+                    {{ date_obj.create_date | date:"Y-m-d H:i:s" }}
+                </td>
+                <td>
+                    {{ date_obj.user }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

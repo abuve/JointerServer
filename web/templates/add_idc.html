@@ -1,0 +1,110 @@
+{% extends 'layout/_layout.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/plugins/ztree/css/metroStyle/metroStyle.css" type="text/css">
+
+    <style type="text/css">
+        .ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
+    </style>
+
+{% endblock %}
+
+{% block conent %}
+    <ol class="breadcrumb" style="margin-bottom: 0;">
+        <div class='btn-group btn-group-xs'>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/cmdb/idc.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> IDC</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Create IDC</a>
+        </div>
+    </ol>
+    <div class="col-sm-6" style="padding: 20px 8px;">
+
+        <form class="form-horizontal" id="add_idc_form" role="form" action="/cmdb/idcs.html" method="post">
+
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <td style="line-height:34px;" align="right">IDC Name : *</td>
+                    <td>
+                        <input type="text" class="form-control" name="idc_name" placeholder="Enter idc name...">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="line-height:34px;" align="right">Floor : *</td>
+                    <td>
+                        <input type="text" class="form-control" name="idc_floor" placeholder="Enter idc floor..." onkeyup="value=value.replace(/[^\d]/g,'')">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="line-height:34px;" align="right">Phone : *</td>
+                    <td>
+                        <input type="text" class="form-control" name="idc_phone" placeholder="Enter idc phone..." onkeyup="value=value.replace(/[^\d]/g,'')">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="line-height:34px;" align="right">Address : *</td>
+                    <td>
+                        <input type="text" class="form-control" name="idc_address" placeholder="Enter idc address...">
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <a type="submit" class="btn btn-primary" onclick="add_project_fn()"><i class="fa fa-check"></i> Create Idc</a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/cores.js"></script>
+
+    <script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.excheck.js"></script>
+	<script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.exedit.js"></script>
+
+    <script type="text/javascript" src="/static/js/cmdb-asset-create.js"></script>
+
+    <script>
+        $(function () {
+            $.initMenu('#menu_cmdb_idc_list');
+        });
+
+        function add_project_fn() {
+            var idc_floor_val = $('input[name="idc_floor"]').val();
+            var number_note = "Please fill number";
+            var reg = /^[1-9]\d*$|^0$/;
+
+            if ($('input[name="idc_name"]').val().length == 0 ) {
+                alert("Please add idc name.");
+                return false;
+            }
+            if (idc_floor_val.length == 0 ) {
+                alert("Please add idc floor.");
+                return false;
+            }
+
+            if ($('input[name="idc_phone"]').val().length == 0 ) {
+                alert("Please add idc phone.");
+                return false;
+            }
+            if ($('input[name="idc_address"]').val().length == 0 ) {
+                alert("Please add idc address.");
+                return false;
+            }
+            $("#add_idc_form").submit()
+        }
+
+    </script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'layout/_layout.html' %}
+
+{% block css %}
+
+
+{% endblock %}
+
+{% block conent %}
+
+    <ol class="breadcrumb" style="margin-bottom: 0;">
+        <div class='btn-group btn-group-xs'>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/project.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Project</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'project-appviews' response.data.id %}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> AppViews</a>
+        </div>
+    </ol>
+
+    <div class="row" style="padding: 10px 8px;">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0">
+                <div class="container-fluid" style="padding-left: 0">
+                    <div>
+                        <ul class="nav navbar-nav">
+                            {% for app_obj in response.data.applications.all %}
+                                <li class="appviews_nav_control" role="presentation" style="border-right: 1px solid #e7e7e7" id="{{ app_obj.id }}"><a class="no-radius" href="#" onclick="load_appviews_detail_fn({{ app_obj.id }})">{{ app_obj.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div id="appviews_detail_html"></div>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/cores.js"></script>
+    <script type="text/javascript" src="/static/js/project-list.js"></script>
+
+    <script>
+        $(function () {
+            $.initMenu('#menu_project');
+            default_appviews_detail_fn({{ response.data.applications.all.0.id }})
+        });
+
+    </script>
+{% endblock %}

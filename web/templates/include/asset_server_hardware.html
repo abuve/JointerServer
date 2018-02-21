@@ -1,0 +1,156 @@
+<style>
+    .guige {
+
+    }
+
+    .guige-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .guige-table .title {
+        background: #f5fafe;
+        text-align: left;
+        font-weight: bold;
+        line-height: 32px;
+        height: 32px;
+        font-family: "微软雅黑";
+        border-right: 1px solid #dcdcdc;
+        border-left: 2px solid #0488cd;
+    }
+
+    .guige-table td, .content .guige-table th {
+        border: 1px solid #dcdcdc;
+        line-height: 30px;
+        height: 30px;
+        padding: 0 10px;
+        border-top: 0;
+    }
+
+    .guige-table .body-left {
+        width: 126px;
+        font-weight: normal;
+        text-align: right;
+        color: #666;
+    }
+
+    .guige-table .body-right {
+        color: #333;
+    }
+
+</style>
+<div class="guige">
+    <table class="guige-table">
+        <tbody>
+
+        <tr>
+            <th colspan="5" class="title f14 th"><span class="padding-l-8">Basic Info</span></th>
+        </tr>
+        <tr>
+            <td><b>Key</b></td>
+            <td colspan="4"><b>Value</b></td>
+        </tr>
+        <tr>
+            <td>OS Type</td>
+            <td colspan="4">{{ response.data.server.os_type }}</td>
+        </tr>
+        <tr>
+            <td>OS Release</td>
+            <td colspan="4">{{ response.data.server.os_release }}</td>
+        </tr>
+        <tr>
+            <td>SN</td>
+            <td colspan="4">{{ response.data.sn }}</td>
+        </tr>
+        <tr>
+            <td>Model</td>
+            <td colspan="4">{{ response.data.server.model }}</td>
+        </tr>
+        <tr>
+            <td>CPU Count</td>
+            <td colspan="4">{{ response.data.server.cpu_count }}</td>
+        </tr>
+        <tr>
+            <td>CPU Core</td>
+            <td colspan="4">{{ response.data.server.cpu_core_count }}</td>
+        </tr>
+        <tr>
+            <td>CPU型号</td>
+            <td colspan="4">{{ response.data.server.cpu_model }}</td>
+        </tr>
+
+
+        <!-- 网卡信息开始 -->
+{#        <tr>#}
+{#            <th colspan="5" class="title f14 th"><span class="padding-l-8">网卡信息</span></th>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td>名称</td>#}
+{#            <td>MAC地址</td>#}
+{#            <td>IP地址</td>#}
+{#            <td>掩码</td>#}
+{#            <td>UP</td>#}
+{#        </tr>#}
+{#        {% for item in response.data.nic.all %}#}
+{#            <tr>#}
+{#                <td>{{ item.name }}</td>#}
+{#                <td>{{ item.hwaddr }}</td>#}
+{#                <td>{{ item.ipaddrs }}</td>#}
+{#                <td>{{ item.netmask }}</td>#}
+{#                <td>{{ item.up }}</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+        <!-- 网卡信息结束 -->
+
+        <!-- 硬盘信息开始 -->
+        <tr>
+            <th colspan="5" class="title f14" style="border-left:2px solid #0488cd;">
+                <span class="padding-l-8">Disk Info</span>
+            </th>
+        </tr>
+        <tr>
+            <td>Slot</td>
+            <td>Capacity</td>
+            <td>Interface Type</td>
+            <td colspan="2">Model</td>
+        </tr>
+
+        {% for item in response.data.disk_set.all %}
+            <tr>
+                <td>{{ item.slot }}</td>
+                <td>{{ item.capacity }}</td>
+                <td>{{ item.iface_type }}</td>
+                <td colspan="2">{{ item.model }}</td>
+
+            </tr>
+        {% endfor %}
+        <!-- 硬盘信息结束 -->
+
+        <!-- 内存信息开始 -->
+        <tr>
+            <th colspan="5" class="title f14" style="border-left:2px solid #0488cd;">
+                <span class="padding-l-8">RAM Info</span>
+            </th>
+        </tr>
+        <tr>
+            <td>Slot</td>
+            <td>Capacity</td>
+            <td colspan="2">Model</td>
+            <td>SN</td>
+        </tr>
+
+        {% for item in response.data.ram_set.all %}
+            <tr>
+                <td>{{ item.slot }}</td>
+                <td>{{ item.capacity }}</td>
+                <td colspan="2">{{ item.model }}</td>
+                <td>{{ item.sn }}</td>
+            </tr>
+        {% endfor %}
+        <!-- 内存信息结束 -->
+
+
+        </tbody>
+    </table>
+</div>

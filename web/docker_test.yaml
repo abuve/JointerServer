@@ -1,0 +1,38 @@
+message_server:
+  image: omdockerhub.neweb.me:5000/nodejs-message_server
+  container_name: message_server
+  cap_add:
+    - LINUX_IMMUTABLE
+  ports:
+    - "9580:9580"
+
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /opt/compose-nginx/nodejs/confing:/app/Server/config
+    - /opt/compose-nginx/nodejs/confing/env.js:/app/Server/env.js
+    - /opt/container-logs/nodejs/message_server:/var/log
+    - /opt/container-logs/nodejs/message_server/pm2_logs_error/:/root/.pm2/logs/
+    - /etc/hosts:/etc/hosts:ro
+
+
+  hostname: message_server
+  restart: always
+  mem_limit: 4096m
+  memswap_limit: 8192m
+  environment:
+    NODE_ENV: development
+  stdin_open: true
+  tty: true
+  working_dir: /app/Server
+  command: "pm2 start --max-memory-restart 1200M messageServer.js --no-daemon"
+  log_driver: syslog
+  log_opt:
+    syslog-address: "tcp://10.168.11.125:576"
+
+  ulimits:
+    core:
+      soft: 0
+      hard: 0
+  dns:
+   - 10.168.11.100
+   - 10.167.11.100

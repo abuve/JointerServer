@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.css"/>
+    <link href="/static/plugins/bootstrap/css/bootstrap-directional-buttons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/backend.css"/>
+    <link rel="stylesheet" href="/static/css/commons.css"/>
+
+
+    <link rel="stylesheet" href="/static/ace/css/ace.min.css" />
+    <link rel="stylesheet" href="/static/ace/css/font-awesome.min.css" />
+
+
+    {% block css %} {% endblock %}
+
+</head>
+<body>
+<div class="pg-header">
+    {% include 'include/header_menu.html' %}
+</div>
+<div class="pg-body">
+{#    <div class="menu">#}
+{#        <a id="menu_server" class="menu-item" href="/server.html">#}
+{#            <i class="fa fa-connectdevelop" aria-hidden="true"></i>#}
+{#            <span>Application</span>#}
+{#        </a>#}
+{#        <a id="mission_center" class="menu-item" href="/mission.html">#}
+{#            <i class="fa fa-connectdevelop" aria-hidden="true"></i>#}
+{#            <span>Mission Center</span>#}
+{#        </a>#}
+{##}
+{#    </div>#}
+
+
+
+
+    <div class="sidebar" id="sidebar">
+
+
+        <script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+					</script>
+
+
+					<ul class="nav nav-list">
+						<li>
+							<a href="/dashboard.html">
+								<i class="icon-dashboard"></i>
+								<span class="menu-text"> Dashboard </span>
+							</a>
+						</li>
+
+						<li class="open">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-desktop"></i>
+								<span class="menu-text"> Applications </span>
+							</a>
+
+							<ul class="submenu" style="display: block;">
+								<li id="menu_project">
+									<a href="/project.html">
+										<i class="icon-double-angle-right"></i>
+										<i class="icon-coffee"></i> Project
+									</a>
+								</li>
+
+								<li id="menu_server">
+									<a href="/server.html">
+										<i class="icon-double-angle-right"></i>
+										<i class="icon-bar-chart"></i> Server
+									</a>
+								</li>
+
+							</ul>
+						</li>
+
+						<li class="open">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-list"></i>
+								<span class="menu-text"> Mission Control </span>
+							</a>
+
+							<ul class="submenu" style="display: block;">
+								<li id="menu_mission_list">
+									<a href="/mission.html">
+										<i class="icon-double-angle-right"></i>
+										<i class="icon-book"></i> Mission List
+									</a>
+								</li>
+							</ul>
+						</li>
+
+                        <li class="open">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-cogs"></i>
+								<span class="menu-text"> CMDB </span>
+							</a>
+
+							<ul class="submenu" style="display: block;">
+								<li id="menu_cmdb_docker_list">
+									<a href="/cmdb/docker-list.html">
+										<i class="icon-double-angle-right"></i>
+										<i class="icon-cloud"></i> Docker List
+									</a>
+								</li>
+                                <li id="menu_cmdb_server_list">
+									<a href="/cmdb/server-list.html">
+										<i class="icon-double-angle-right"></i>
+										<i class="icon-laptop"></i> Asset Infomation
+									</a>
+								</li>
+{#                                <li id="menu_cmdb_approve_list">#}
+{#									<a href="/cmdb/approval-list.html">#}
+{#										<i class="icon-double-angle-right"></i>#}
+{#										<i class="icon-key"></i> Resource Center#}
+{#									</a>#}
+{#								</li>#}
+                                <li id="menu_cmdb_business_list">
+									<a href="/cmdb/business-list.html">
+										<i class="icon-double-angle-right"></i>
+										<i class="icon-group"></i> Business Unit
+									</a>
+								</li>
+                                <li id="menu_cmdb_idc_list">
+									<a href="/cmdb/idc-list.html">
+										<i class="icon-double-angle-right"></i>
+										<i class="icon-globe"></i> IDC
+									</a>
+								</li>
+							</ul>
+						</li>
+
+                        <li class="open">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-desktop"></i>
+								<span class="menu-text"> User Center</span>
+							</a>
+
+							<ul class="submenu" style="display: block;">
+								<li id="menu_user_list">
+									<a href="/user_center/user-list.html">
+										<i class="icon-double-angle-right"></i>
+										<i class="icon-coffee"></i> Users
+									</a>
+								</li>
+
+								<li id="menu_group_list">
+									<a href="/user_center/group-list.html">
+										<i class="icon-double-angle-right"></i>
+										<i class="icon-bar-chart"></i> Groups
+									</a>
+								</li>
+
+							</ul>
+						</li>
+
+					</ul><!-- /.nav-list -->
+
+				</div>
+
+
+    <div class="content">
+        {% block conent %} {% endblock %}
+    </div>
+</div>
+<script type="text/javascript" src="/static/js/jquery-1.12.4.js"></script>
+
+{#<script src="/static/ace/js/ace-elements.min.js"></script>#}
+{#<script src="/static/ace/js/ace.min.js"></script>#}
+
+
+
+
+{% block js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,52 @@
+<div class="btn-group custom-btn-group" style="padding-bottom: 10px;">
+    <a class="btn btn-default" onclick="add_business_fn({% if response.data.parent_unit.id %}{{ response.data.parent_unit.id }}{% else %}{{ response.data.id }}{% endif %})"><i class="fa fa-plus-circle"></i> Add</a>
+    <a class="btn btn-default" onclick="delete_business_fn({{ response.data.id }}, '{{ response.data.name }}')"><i class="fa fa-plus-circle"></i> Delete</a>
+    <a class="btn btn-default" onclick="edit_business_fn({{ response.data.id }})"><i class="fa fa-plus-circle"></i> Edit</a>
+    <a id="handle_status" class="btn" tabindex="0" role="button" data-toggle="manual" data-trigger="focus" data-container="body" data-html="true" data-placement="bottom" title="错误详细" data-content=""></a>
+</div>
+
+
+<div class="guige">
+    <table class="guige-table">
+        <tbody>
+        <tr>
+            <td class="title" style="width: 180px">Parent Unit</td>
+            <td colspan="4">{{ response.data.parent_unit.name }}</td>
+        </tr>
+        <tr>
+            <td class="title">Name</td>
+            <td colspan="4">{{ response.data.name }}</td>
+        </tr>
+        <tr>
+            <td class="title">Business Admin</td>
+            <td colspan="4">
+                {% for obj in response.data.manager.all %}
+                    {% for user in obj.users.all %}
+                        {{ user.username }} |
+                    {% endfor %}
+                {% endfor %}
+            </td>
+
+        </tr>
+        <tr>
+            <td class="title">Business Contact</td>
+            <td colspan="4">
+                {% for obj in response.data.contact.all %}
+                    {% for user in obj.users.all %}
+                        {{ user.username }} |
+                    {% endfor %}
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td class="title">Description</td>
+            <td colspan="4">{{ response.data.memo }}</td>
+        </tr>
+        <tr>
+            <td class="title">Create Date</td>
+            <td colspan="4">{{ response.data.create_date | date:"Y-m-d H:i:s" }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>

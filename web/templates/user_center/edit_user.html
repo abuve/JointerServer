@@ -1,0 +1,127 @@
+{% extends 'layout/_layout.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/plugins/ztree/css/metroStyle/metroStyle.css" type="text/css">
+
+    <style type="text/css">
+        .ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
+    </style>
+
+{% endblock %}
+
+{% block conent %}
+    <ol class="breadcrumb" style="margin-bottom: 0;">
+        <div class='btn-group btn-group-xs'>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> User Center</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/user_center/user-list.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Users</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Edite User</a>
+        </div>
+    </ol>
+    <div class="col-sm-6" style="padding: 20px 8px;">
+
+        <form class="form-horizontal" id="edit_user_form" role="form" action="/user_center/users.html" method="put">
+
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <td style="line-height:34px;" align="right">Username : *</td>
+                    <td>
+                        <input type="text" class="form-control" name="user_name" placeholder="Enter user name..." value="{{ response.data.username}}" disabled>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="line-height:34px;" align="right">Phone : *</td>
+                    <td>
+                        <input type="text" class="form-control" name="user_phone" placeholder="Enter user phone..." value="{{ response.data.phone}}" onkeyup="value=value.replace(/[^\d]/g,'')">
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="line-height:34px;" align="right">Email : *</td>
+                    <td>
+                        <input type="text" class="form-control" name="user_email" placeholder="Enter user email..." value="{{ response.data.email}}">
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="line-height:34px;" align="right">Department : *</td>
+                    <td>
+                        <input type="text" class="form-control" name="user_department" placeholder="Enter user department..." value="{{ response.data.department}}">
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="line-height:34px;" align="right">Group : *</td>
+                    <td>
+                        <select class="form-control" name="user_group" multiple="multiple">
+
+                        {% for k, v in response.select.items %}
+
+                            {% if v.select == True %}
+                                <option value="{{ k }}" selected="selected">{{ v.group_name }}</option>
+                            {% else %}
+                                <option value="{{ k }}">{{ v.group_name }}</option>
+                            {% endif %}
+
+                        {% endfor %}
+
+                        </select>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <a class="btn btn-primary" onclick="update_user_app_fn('put', '{{ response.data.id }}')"><i class="fa fa-check"></i> Update User</a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/cores.js"></script>
+    <script type="text/javascript" src="/static/js/user_center/user-list.js"></script>
+
+    <script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.excheck.js"></script>
+	<script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.exedit.js"></script>
+
+    <script type="text/javascript" src="/static/js/cmdb-asset-create.js"></script>
+
+    <script>
+        $(function () {
+            $.initMenu('#menu_user_list');
+
+            // 选中父级项目
+{#            $('select[name="project_id"]').val({{ response.data.project_id.id }})#}
+
+            //选中应用类型
+{#            $('select[name="app_type"]').val("{{ response.data.app_type}}")#}
+
+        });
+
+{#        function add_server_fn() {#}
+{#            if ($('input[name="app_name"]').val().length == 0) {#}
+{#                alert("Please add app name.");#}
+{#                return false;#}
+{#            }#}
+            //$("#add_server_form").submit()
+{#        }#}
+
+    </script>
+{% endblock %}

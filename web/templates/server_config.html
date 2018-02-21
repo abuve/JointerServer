@@ -1,0 +1,367 @@
+{% extends 'layout/_layout.html' %}
+
+{% load count_instance %}
+
+{% block css %}
+
+{#    <style>#}
+{#        /* navbar */#}
+{#        .navbar-default {#}
+{#            background-color: #bce8f1;#}
+{#            border-color: #bce8f1;#}
+{#        }#}
+{#        /* title */#}
+{#        .navbar-default .navbar-brand {#}
+{#            color: #777;#}
+{#        }#}
+{#        .navbar-default .navbar-brand:hover,#}
+{#        .navbar-default .navbar-brand:focus {#}
+{#            color: #31708f;#}
+{#        }#}
+{#        /* link */#}
+{#        .navbar-default .navbar-nav > li > a {#}
+{#            color: #777;#}
+{#        }#}
+{#        .navbar-default .navbar-nav > li > a:hover,#}
+{#        .navbar-default .navbar-nav > li > a:focus {#}
+{#            color: #333;#}
+{#        }#}
+{#        .navbar-default .navbar-nav > .active > a,#}
+{#        .navbar-default .navbar-nav > .active > a:hover,#}
+{#        .navbar-default .navbar-nav > .active > a:focus {#}
+{#            color: #555;#}
+{#            background-color: #E7E7E7;#}
+{#        }#}
+{#        .navbar-default .navbar-nav > .open > a,#}
+{#        .navbar-default .navbar-nav > .open > a:hover,#}
+{#        .navbar-default .navbar-nav > .open > a:focus {#}
+{#            color: #555;#}
+{#            background-color: #D5D5D5;#}
+{#        }#}
+{#        /* caret */#}
+{#        .navbar-default .navbar-nav > .dropdown > a .caret {#}
+{#            border-top-color: #777;#}
+{#            border-bottom-color: #777;#}
+{#        }#}
+{#        .navbar-default .navbar-nav > .dropdown > a:hover .caret,#}
+{#        .navbar-default .navbar-nav > .dropdown > a:focus .caret {#}
+{#            border-top-color: #333;#}
+{#            border-bottom-color: #333;#}
+{#        }#}
+{#        .navbar-default .navbar-nav > .open > a .caret,#}
+{#        .navbar-default .navbar-nav > .open > a:hover .caret,#}
+{#        .navbar-default .navbar-nav > .open > a:focus .caret {#}
+{#            border-top-color: #555;#}
+{#            border-bottom-color: #555;#}
+{#        }#}
+{#        /* mobile version */#}
+{#        .navbar-default .navbar-toggle {#}
+{#            border-color: #DDD;#}
+{#        }#}
+{#        .navbar-default .navbar-toggle:hover,#}
+{#        .navbar-default .navbar-toggle:focus {#}
+{#            background-color: #DDD;#}
+{#        }#}
+{#        .navbar-default .navbar-toggle .icon-bar {#}
+{#            background-color: #CCC;#}
+{#        }#}
+{#        @media (max-width: 767px) {#}
+{#            .navbar-default .navbar-nav .open .dropdown-menu > li > a {#}
+{#                color: #777;#}
+{#            }#}
+{#            .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,#}
+{#            .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {#}
+{#                color: #333;#}
+{#            }#}
+{#        }#}
+{#    </style>#}
+
+{% endblock %}
+
+{% block conent %}
+
+    <ol class="breadcrumb" style="margin-bottom: 0;">
+        <div class='btn-group btn-group-xs'>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Application</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'server-config' response.data.id %}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{ response.data.name }}</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'server-config' response.data.id %}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Basic Info</a>
+        </div>
+    </ol>
+
+    <div class="row" style="padding: 10px 8px;">
+            <div class="col-md-12">
+                {% include 'include/server_config_header.html' %}
+            </div>
+    </div>
+
+    <div class="row" style="padding: 10px 8px;">
+            <div class="col-md-5">
+                <!-- 基础信息 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Basic Info</h3>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <td style="width: 150px;">
+                                    <strong>Application Name</strong>
+                                </td>
+                                <td>
+                                    {{ response.data.name }}
+                                </td>
+                                <td style="width: 150px;">
+                                    <strong>System Name</strong>
+                                </td>
+                                <td>
+                                    {{ response.data.project_id.name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 150px;">
+                                    <strong>Application Type</strong>
+                                </td>
+                                <td>
+                                    {{ response.data.get_app_type_display }}
+                                </td>
+                                <td style="width: 150px;">
+                                    <strong>Nusiness Unit</strong>
+                                </td>
+                                <td>
+                                    {{ response.data.project_id.business_unit.name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 150px;">
+                                    <strong>OM</strong>
+                                </td>
+                                <td colspan="3">
+                                    admin1, admin2
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 150px;">
+                                    <strong>DEV</strong>
+                                </td>
+                                <td colspan="3">
+                                    User1, User2
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 应用日志地址 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Logs Url</h3>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th style="width: 20%;">
+                                    Group Name
+                                </th>
+                                <th style="width: 20%;">
+                                    Group Tag
+                                </th>
+                                <th>
+                                    Http Url
+                                </th>
+                            </tr>
+                            {% for group_obj in response.data.groups.all %}
+                                {% for log_obj in group_obj.webconfiglogscenter.all %}
+                                    <tr>
+                                        <td>
+                                            {{ group_obj.name }}
+                                        </td>
+                                        <td>
+                                            real
+                                        </td>
+                                        <td style="width: 150px;">
+                                            <a href="{{ log_obj.url }}" target="_blank">{{ log_obj.url }}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 资产信息展示 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">App Asset Information</h3>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th style="width: 20%;">
+                                    Group Name
+                                </th>
+                                <th style="width: 20%;">
+                                    Group Tag
+                                </th>
+                                <th>
+                                    IP
+                                </th>
+                                <th>
+                                    HostName
+                                </th>
+                                <th>
+                                    IDC
+                                </th>
+                            </tr>
+                            {% for group_obj in response.data.groups.all %}
+                                {% for asset_obj in group_obj.instance.all %}
+                                    <tr>
+                                        <td>
+                                            {{ group_obj.name }}
+                                        </td>
+                                        <td>
+                                            real
+                                        </td>
+                                        <td>
+                                            {{ asset_obj.server.ipaddress }}
+                                        </td>
+                                        <td>
+                                            {{ asset_obj.server.hostname }}
+                                        </td>
+                                        <td>
+                                            {{ asset_obj.idc.name }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Docker信息展示 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">App Docker Instance</h3>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    Group Name
+                                </th>
+                                <th>
+                                    Group Tag
+                                </th>
+                                <th>
+                                    Host IP
+                                </th>
+                                <th>
+                                    Host Port
+                                </th>
+                                <th>
+                                    Container Name
+                                </th>
+                            </tr>
+                            {% for group_obj in response.data.groups.all %}
+                                {% for docker_obj in group_obj.docker.all %}
+                                    <tr>
+                                        <td>
+                                            {{ group_obj.name }}
+                                        </td>
+                                        <td>
+                                            real
+                                        </td>
+                                        <td>
+                                            {{ docker_obj.asset.server.ipaddress }}
+                                        </td>
+                                        <td>
+                                            {{ docker_obj.port }}
+                                        </td>
+                                        <td>
+                                            {{ docker_obj.name }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="col-md-7">
+                <!-- URL 映射关系 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Url Maps</h3>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    Group Tag
+                                </th>
+                                <th>
+                                    Http URL
+                                </th>
+                                <th>
+                                    Cloud Server
+                                </th>
+                                <th>
+                                    Forward Server(Ha/Nginx)
+                                </th>
+                                <th>
+                                    App Instance
+                                </th>
+                            </tr>
+                            {% for group_obj in response.data.groups.all %}
+                                {% for url_obj in group_obj.urlconfighandler.all %}
+                                    <tr>
+                                        <td>
+                                            Real
+                                        </td>
+                                        <td>
+                                            <a href="{{ url_obj.url }}" target="_blank">{{ url_obj.url }}</a>
+                                        </td>
+                                        <td>
+                                            {% for asset_obj in url_obj.cloud.all  %}
+                                                {{ asset_obj.server.ipaddress }} <br />
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for asset_obj in url_obj.forward.all  %}
+                                                {{ asset_obj.server.ipaddress }} <br />
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% for docker_obj in url_obj.docker.all  %}
+                                                {{ docker_obj.asset.server.ipaddress }}:{{ docker_obj.port }} <br />
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/cores.js"></script>
+
+    <script>
+
+        $(function () {
+            $.initMenu('#menu_asset');
+            // 激活头部菜单
+            $("#basic_info").addClass('active')
+        });
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'layout/_layout.html' %}
+
+{% block css %}
+
+    <link href="/static/plugins/bootstrap/css/bootstrap-table.css" rel="stylesheet" />
+
+{% endblock %}
+
+{% block conent %}
+    <ol class="breadcrumb" style="margin-bottom: 0;">
+        <li><a href="/server.html">Index</a></li>
+        <li class="active">Mission Center</li>
+    </ol>
+    <div style="padding: 5px 8px;">
+
+        <div class="table-responsive table-area">
+            <div id="group_toolbar" class="btn-group">
+                <a class="btn btn-default no-radius" data-toggle="modal" data-target="#add_group_modal" onclick="" disabled><i class="fa fa-cogs"></i> Control</a>
+            </div>
+
+            <table id="group_table"></table>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/cores.js"></script>
+
+    <script src="/static/plugins/bootstrap/js/bootstrap-table.js"></script>
+    <script src="/static/js/mission-detail.js"></script>
+
+    <script>
+        $(function () {
+            $.initMenu('#mission_center');
+            $.nbDataList('/missions.html');
+
+            var groupTable = new GroupTableInit();
+            groupTable.Init({{ response.mission_id }});
+        });
+
+    </script>
+{% endblock %}

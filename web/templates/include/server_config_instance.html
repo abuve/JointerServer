@@ -1,0 +1,90 @@
+<div>
+
+    <div id="instance_toolbar" class="btn-group">
+        <a class="btn btn-default no-radius" data-toggle="modal" data-target="#add_group_modal" onclick="create_instance_fn()"><i class="fa fa-plus-circle"></i> Create</a>
+        <a class="btn btn-default no-radius" data-toggle="modal" data-target="#add_group_modal" onclick="create_instance_fn()"><i class="fa fa-plus-circle"></i> Expand</a>
+        <a class="btn btn-default no-radius" data-toggle="modal" data-target="#add_group_modal" onclick="create_instance_fn()"><i class="fa fa-plus-circle"></i> Clone</a>
+        <a class="btn btn-default no-radius" data-toggle="modal" data-target="#add_instance_modal" onclick="create_instance_fn()"><i class="fa fa-plus-circle"></i> Bond</a>
+    </div>
+
+    <table id="instance_table"></table>
+
+</div>
+
+<!-- 删除实例 -->
+<div class="modal fade" id="delete_instance_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="margin-top: 150px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Delete Application Group</h4>
+            </div>
+            <div class="modal-body" id="instance_html_area">
+
+                Confirm remove group  ? All the data will be delete.
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="delete_server_instance_fn" onclick="update_server_instance_fn('post')">Delete</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- 绑定实例 -->
+<div class="modal fade" id="add_instance_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="margin-top: 150px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Bond Application Instances</h4>
+            </div>
+            <div class="modal-body">
+
+                <form role="form" id="add_server_instance_form">
+
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                        <tr>
+                            <td style="line-height:34px;" align="right">Group Select : *</td>
+                            <td>
+                                <select class="form-control" name="add_instance_group_id">
+                                    {% for obj in response.data.groups.all %}
+                                        <option value="{{ obj.id }}">{{ obj.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="line-height:34px;" align="right">IP Address : *</td>
+                            <td>
+                                <select class="form-control" name="add_instance_group_id" onchange="load_instance_fn(this)">
+                                    <option value="None">Please select Ipaddress</option>
+                                    {% for obj in response.asset_data.all %}
+                                        <option value="{{ obj.id }}">{{ obj.server.ipaddress }}</option>
+                                    {% endfor %}
+                                </select>
+                                <!--<input type="text" class="form-control" name="add_instance_ip" placeholder="">-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="line-height:34px;" align="right">Instance : *</td>
+                            <td>
+                                <!--<input type="text" class="form-control" name="add_instance_port" placeholder="">-->
+                                <select class="form-control" id="instance" name="instance_select"></select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="update_server_instance_fn" onclick="update_server_instance_fn('post')">Bond</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
