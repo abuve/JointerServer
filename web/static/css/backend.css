@@ -11,7 +11,7 @@
     text-decoration: none;
 }
 .pg-header .logo {
-    width: 200px;
+    width: 210px;
     overflow: hidden;
     height: 48px;
 }
@@ -179,7 +179,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    left: 205px;
+    left: 215px;
     border: 1px solid #dddddd;
     overflow: scroll;
 }

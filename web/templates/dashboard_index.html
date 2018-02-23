@@ -29,38 +29,62 @@
             <div class="row tile_count">
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-user"></i> 物理机总数</span>
-                    <div class="count">56</div>
+                    <div class="count">{{ response.basic_count.physical_count }}</div>
                     <span class="count_bottom"><i class="green">4% </i> From last Week</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-user"></i> Cloud云主机总数</span>
-                    <div class="count">256</div>
+                    <div class="count">{{ response.basic_count.cloud_count }}</div>
                     <span class="count_bottom"><i class="green">4% </i> From last Week</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-clock-o"></i> Docker实例总数</span>
-                    <div class="count">306</div>
+                    <div class="count">{{ response.basic_count.docker_count }}</div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-user"></i> 业务线</span>
-                    <div class="count green">36</div>
+                    <div class="count green">{{ response.basic_count.business_count }}</div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-user"></i> 项目总数</span>
-                    <div class="count">12</div>
+                    <div class="count">{{ response.basic_count.project_count }}</div>
                     <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-user"></i> 应用总数</span>
-                    <div class="count">36</div>
+                    <div class="count">{{ response.basic_count.application_count }}</div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                 </div>
             </div>
 
             <div class="row">
-                111
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">CMDB资源数据统计</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div id="asset_count_container" style="height: 280px">数据加载中...</div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div id="idc_count_container" style="height: 280px">数据加载中...</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">业务资源利用率统计</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="business_count_container" style="height: 280px"></div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -117,7 +141,7 @@
             </div>
 
             <div class="row" style="padding: 0px 15px">
-                <div class="panel panel-default">
+                <div class="panel panel-danger">
                     <div class="panel-heading"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 项目Wiki</div>
                     <table class="table table-bordered table-striped">
                         <tbody>
@@ -179,7 +203,13 @@
 	<script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.excheck.js"></script>
 	<script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.exedit.js"></script>
 
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="/static/js/dashboard.js"></script>
+
+    <script type="text/javascript" src="/static/plugins/ztree/js/jquery.ztree.exedit.js"></script>
+
     <script>
+
         $(function () {
             $.initMenu('#menu_cmdb_server_list');
             $.nbDataList('/cmdb/server-json.html');
