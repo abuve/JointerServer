@@ -55,17 +55,26 @@ class DashBoard(BaseServiceList):
         get_asset_type = CMDB_MODELS.Asset.device_type_choices
         asset_type_dict = {type_obj[1]: type_obj[0] for type_obj in get_asset_type}
         asset_type_list = list(map(lambda x: x[1], get_asset_type))
+        # 用于统计docker实例的个数
+        asset_type_list.append('DockerInstance')
         get_business_name = CMDB_MODELS.BusinessUnit.objects.values_list('name')
         business_name_list = [business_obj[0] for business_obj in get_business_name]
 
         data_count_dic = []
-        for business_name in business_name_list:
+        for asset_type in asset_type_list:
             asset_count_list = []
-            for asset_type in asset_type_list:
-                asset_count = CMDB_MODELS.BusinessUnit.objects.filter(name=business_name, asset__device_type_id=asset_type_dict[asset_type]).count()
-                asset_count_list.append(asset_count)
+            for business_name in business_name_list:
+                if asset_type == 'DockerInstance':
+                    # 额外统计当前业务线包含的docker实例个数
+                    dockerInstance_count = CMDB_MODELS.DockerInstance.objects.filter(
+                        dockers__app_id__project_id__business_unit__name=business_name).count()
+                    asset_count_list.append(dockerInstance_count)
+                else:
+                    asset_count = CMDB_MODELS.BusinessUnit.objects.filter(name=business_name,asset__device_type_id=asset_type_dict[asset_type]).count()
+                    asset_count_list.append(asset_count)
+
             data_dic = {
-                'name': business_name,
+                'name': asset_type,
                 'type': 'bar',
                 'stack': '统计',
                 'label': {
@@ -77,6 +86,8 @@ class DashBoard(BaseServiceList):
                 'data': asset_count_list
             }
             data_count_dic.append(data_dic)
+
+        asset_type_list.append('DockerInstance')
 
         return {'business_list': business_name_list, 'asset_type_list': asset_type_list, 'data_count': data_count_dic}
 
@@ -92,8 +103,6 @@ class DashBoard(BaseServiceList):
             response.asset_count = asset_count
             response.idc_count = idc_count
             response.business_count = business_count
-
-            print(business_count)
 
         except Exception as e:
             print(Exception, e)

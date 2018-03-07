@@ -78,8 +78,9 @@ class Approval(BaseServiceList):
                 'title': "Status",
                 'display': 1,
                 'text': {
-                    'content': "<a type='button' class='btn btn-warning btn-xs'>Approved</a>",
-                    'kwargs': {'n': '@approved'}},
+                    'content': '<a type="button" class="btn btn-{class} btn-xs">{n}</a>',
+                     'kwargs': {'n': '@@approval_status', 'class': '@@status_map'}
+                },
                 'attr': {}
             },
             {
@@ -88,7 +89,8 @@ class Approval(BaseServiceList):
                 'display': 1,
                 'text': {
                     'content': "<a href='/asset-{device_type_id}-{nid}.html'>查看详细</a> | <a href='/edit-asset-{device_type_id}-{nid}.html'>编辑</a>",
-                    'kwargs': {'device_type_id': '@device_type_id', 'nid': '@id'}},
+                    'kwargs': {'device_type_id': '@device_type_id', 'nid': '@id'}
+                },
                 'attr': {}
             },
         ]
@@ -99,6 +101,22 @@ class Approval(BaseServiceList):
         }
         super(Approval, self).__init__(condition_config, table_config, extra_select)
 
+    # 用于控制button显示样式
+    @property
+    def status_map(self):
+        result = [
+            {'id': True, 'name': 'success'},
+            {'id': False, 'name': 'danger'},
+        ]
+        return result
+
+    @property
+    def approval_status(self):
+        result = [
+            {'id': True, 'name': 'Approved'},
+            {'id': False, 'name': 'Pending'},
+        ]
+        return result
 
     @property
     def device_status_list(self):
@@ -160,7 +178,9 @@ class Approval(BaseServiceList):
                 'device_status_list': self.device_status_list,
                 'device_type_list': self.device_type_list,
                 'idc_list': self.idc_list,
-                'business_unit_list': self.business_unit_list
+                'business_unit_list': self.business_unit_list,
+                'approval_status': self.approval_status,
+                'status_map': self.status_map
             }
             response.data = ret
             response.message = '获取成功'

@@ -1,0 +1,30 @@
+{% extends 'layout/_layout.html' %}
+
+{% block css %}
+
+
+{% endblock %}
+
+{% block conent %}
+
+    <ol class="breadcrumb" style="margin-bottom: 0;">
+        <div class='btn-group btn-group-xs'>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px" href="/dashboard.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> System</a>
+                <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 403</a>
+        </div>
+    </ol>
+
+    <div style="padding: 10px 8px;">
+
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <strong>Http code 403 拒绝访问 !!!</strong> <br /><br />请联系管理员获取系统访问权限
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

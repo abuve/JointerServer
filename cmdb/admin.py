@@ -24,8 +24,12 @@ class DiskInline(admin.TabularInline):
 #     list_display = ('id', 'hostname', 'manufacturer')
 #     inlines = [MemoryInline, DiskInline]
 
+class AssetAdmin(admin.ModelAdmin):
+    search_fields = ['sn', ]
+    inlines = [ServerInline]
+
 #admin.site.register(User)
-admin.site.register(models.Asset)
+admin.site.register(models.Asset, AssetAdmin)
 admin.site.register(models.Server)
 # admin.site.register(models.UserProfile)
 # admin.site.register(models.UserGroup)

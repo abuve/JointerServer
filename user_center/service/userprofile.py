@@ -69,11 +69,20 @@ class UserProfile(BaseServiceList):
                 'attr': {}
             },
             {
+                'q': 'roles__name',
+                'title': "Roles",
+                'display': 1,
+                'text': {'content': "{n}", 'kwargs': {'n': '@roles__name'}},
+                'attr': {},
+                'push': 'true'
+            },
+            {
                 'q': 'user_groups__name',
                 'title': "groups",
                 'display': 1,
                 'text': {'content': "{user_groups__name}", 'kwargs': {'user_groups__name': '@user_groups__name'}},
-                'attr': {}
+                'attr': {},
+                'push': 'true'
             },
             {
                 'q': 'last_login',
@@ -212,34 +221,28 @@ class UserProfile(BaseServiceList):
             user_phone = put_dict.get('user_phone')
             user_email = put_dict.get('user_email')
             user_department = put_dict.get('user_department')
-            # print(put_dict.getlist('user_group'))
             user_group_list = put_dict.getlist('user_group')
-            # print(list(user_group_list))
-            # print(user_group)
-            # print(Group.objects.get(id=user_group))
+            user_roles_list = put_dict.getlist('user_roles')
 
             update_data = user_models.UserProfile.objects.get(id=user_id)
-            # print(update_data.user_groups.get(id=user_group))
-            groups_list = user_models.UserGroup.objects.filter(id__in=user_group_list)
-            # print(groups_list[0], "fff")
-            # group_obj = Group.objects.filter(id=user_group).first()
-            # group_obj.groups.set([2,])
+            try:
+                groups_list = user_models.UserGroup.objects.filter(id__in=user_group_list)
+            except:
+                groups_list = []
+            try:
+                roles_list = user_models.Roles.objects.filter(id__in=user_roles_list)
+            except:
+                roles_list = []
             update_data.username = user_name
             update_data.phone = user_phone
             update_data.email = user_email
             update_data.department = user_department
             update_data.user_groups.clear()
+            update_data.roles.clear()
             update_data.user_groups.add(*groups_list)
-            # update_data.group = Group.objects.get(id=user_group)
+            update_data.roles.add(*roles_list)
+
             update_data.save()
-
-            # user_groups = user_models.UserProfile.groups.through.objects.get(userprofile_id=user_id)
-            # # print(user_groups)
-            # group_obj = Group.objects.get(id=user_group)
-            # user_groups.group = group_obj
-            # user_groups.save()
-
-
 
         except Exception as e:
             print(Exception,e)
@@ -254,11 +257,17 @@ class UserProfile(BaseServiceList):
         try:
             response.data = user_models.UserProfile.objects.filter(id=user_id).first()
             user_group = user_models.UserGroup.objects.all()
+            user_roles = user_models.Roles.objects.all()
             select_dic = {i.id: {"group_name": i.name, "select": False} for i in user_group}
+            roles_dic = {i.id: {"role_name": i.name, "select": False} for i in user_roles}
             for i in response.data.user_groups.all():
                 select_dic[i.id]["select"] = True
-            # print(select_dic)
+
+            for i in response.data.roles.all():
+                roles_dic[i.id]["select"] = True
+
             response.select = select_dic
+            response.roles_dic = roles_dic
         except Exception as e:
             print(Exception, e)
             response.status = False

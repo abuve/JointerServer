@@ -60,7 +60,7 @@ class Asset(models.Model):
     )
     device_status_choices = (
         (1, 'Active'),
-        #(2, 'False'),
+        (2, 'Free'),
         (3, 'Delete'),
     )
     device_type_id = models.IntegerField(choices=device_type_choices, default=1)

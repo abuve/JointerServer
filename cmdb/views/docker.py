@@ -4,17 +4,18 @@ import json
 from django.views import View
 from django.shortcuts import render
 from django.shortcuts import HttpResponse, HttpResponseRedirect
+from utils.mixin_utils import LoginRequiredMixin, PermissionRequiredMixin, WriteAccessLogsMixin
 from django.http import JsonResponse
 
 from cmdb.service import docker
 
 
-class DockerListView(View):
+class DockerListView(WriteAccessLogsMixin, LoginRequiredMixin, PermissionRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return render(request, 'cmdb_docker_list.html')
 
 
-class DockerJsonView(View):
+class DockerJsonView(WriteAccessLogsMixin, LoginRequiredMixin, PermissionRequiredMixin, View):
     def post(self, request):
         response = server.Server.add_data(request)
         return HttpResponseRedirect('/server.html')
@@ -33,7 +34,7 @@ class DockerJsonView(View):
         return JsonResponse(response.__dict__)
 
 
-class AssetDetailView(View):
+class AssetDetailView(WriteAccessLogsMixin, LoginRequiredMixin, PermissionRequiredMixin, View):
     def get(self, request, asset_nid):
         response = server.Server.assets_detail(asset_nid)
         return render(request, 'cmdb_asset_detail.html', {"response": response})

@@ -9,19 +9,18 @@ import json
 from django.views import View
 from django.shortcuts import render
 from django.shortcuts import HttpResponse, HttpResponseRedirect
+from utils.mixin_utils import LoginRequiredMixin, PermissionRequiredMixin, WriteAccessLogsMixin
 from django.http import JsonResponse
-
 
 from user_center.service import usergroups
 
 
-
-class GroupProfileListView(View):
+class GroupProfileListView(WriteAccessLogsMixin, LoginRequiredMixin, PermissionRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return render(request, 'user_center/group_list.html')
 
 
-class GroupJsonView(View):
+class GroupJsonView(WriteAccessLogsMixin, LoginRequiredMixin, PermissionRequiredMixin, View):
     def post(self, request):
         response = usergroups.UserGroups.add_data(request)
         return HttpResponseRedirect('/user_center/group-list.html')
@@ -40,13 +39,13 @@ class GroupJsonView(View):
         return JsonResponse(response.__dict__)
 
 
-class AddGroupView(View):
+class AddGroupView(WriteAccessLogsMixin, LoginRequiredMixin, PermissionRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         # response = usergroups.UserGroups.get_group_info(request)
         return render(request, 'user_center/add_group.html')
 
 
-class UpdateGroupView(View):
+class UpdateGroupView(WriteAccessLogsMixin, LoginRequiredMixin, PermissionRequiredMixin, View):
     def get(self, request, group_id):
         # project_info = server_project.ServerProject.get_project_info(request)
         response = usergroups.UserGroups.group_config(group_id)

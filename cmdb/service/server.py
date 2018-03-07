@@ -93,6 +93,13 @@ class Server(BaseServiceList):
                 'attr': {}
             },
             {
+                'q': 'memo',
+                'title': "Memo",
+                'display': 1,
+                'text': {'content': "{n}", 'kwargs': {'n': '@memo'}},
+                'attr': {'name': 'memo', 'id': '@id', 'edit-enable': 'true', 'edit-type': 'input'}
+            },
+            {
                 'q': 'device_status_id',
                 'title': "Status",
                 'display': 1,
@@ -139,8 +146,8 @@ class Server(BaseServiceList):
     def status_map(self):
         result = [
             {'id': 1, 'name': 'success'},
-            #{'id': 2, 'name': 'danger'},
-            {'id': 3, 'name': 'warning'}
+            {'id': 2, 'name': 'warning'},
+            {'id': 3, 'name': 'danger'}
         ]
         return result
 

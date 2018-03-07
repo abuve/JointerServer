@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>JointerServer运维管理系统</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- basic styles -->
+
+		<link href="/static/ace/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/static/ace/css/font-awesome.min.css" />
+
+		<!-- fonts -->
+
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="/static/ace/css/ace-default.min.css" />
+		<link rel="stylesheet" href="/static/ace/css/ace-rtl.min.css" />
+
+	</head>
+
+	<body class="login-layout">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container" style="margin: 80px auto">
+							<div class="center">
+								<h1>
+									<i class="icon-bar-chart green"></i>
+									<span class="red">JointerServer</span>
+{#									<span class="white">Server</span>#}
+								</h1>
+								<h4 class="blue">&copy; 运维管理系统</h4>
+							</div>
+
+							<div class="space-6"></div>
+
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header blue lighter bigger">
+												<i class="icon-user green"></i>
+												User Login
+											</h4>
+
+											<div class="space-6"></div>
+
+											<form>
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" class="form-control" name="username" placeholder="用户名" />
+															<i class="icon-user"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control" name="password" placeholder="密码" />
+															<i class="icon-lock"></i>
+														</span>
+													</label>
+
+													<div class="space"></div>
+
+													<div class="clearfix">
+                                                        <label class="inline" id="errorHtml">
+{#															<i class="icon-exclamation-sign red"></i>#}
+{#															<span class="lbl" style="color:red;"> 用户名或密码错误</span>#}
+														</label>
+
+														<button type="button" class="width-30 pull-right btn btn-sm btn-primary" onclick="do_login_fn()">
+															<i class="icon-key"></i>
+															登录
+														</button>
+													</div>
+
+													<div class="space-4"></div>
+												</fieldset>
+											</form>
+
+									</div><!-- /widget-body -->
+								</div><!-- /login-box -->
+
+							</div><!-- /position-relative -->
+						</div>
+                        </div>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div>
+		</div><!-- /.main-container -->
+
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.js"></script>
+
+    <script>
+
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return('/');
+        }
+
+        function loginErrorHtml(text) {
+            errorHtml = '<i class="icon-exclamation-sign red"></i><span class="lbl" style="color:red;"> ' + text + '</span>'
+            return errorHtml
+        }
+
+        function do_login_fn() {
+            var username = $("input[name='username']").val()
+            var password = $("input[name='password']").val()
+
+            if (username.length == 0) {
+                $('#errorHtml').html(loginErrorHtml('请输入用户名'));
+                return false;
+            }
+
+            if (password.length == 0) {
+                $('#errorHtml').html(loginErrorHtml('请输入密码'));
+                return false;
+            }
+
+            $.ajax({
+                url: "/system/login.html",
+                type: 'post',
+                data: {"username": username, 'password': password},
+                traditional: true,
+                success: function (response) {
+                    if (response.status) {
+                        // 登录成功
+                        window.location.href = getQueryVariable('next');
+                    } else {
+                        // 登录失败
+                        $('#errorHtml').html(loginErrorHtml(response.message));
+                    }
+                },
+                error: function () {
+                    // 系统异常
+                    $('#errorHtml').html(loginErrorHtml(response.message));
+                }
+            })
+
+        }
+    </script>
+</body>
+</html>

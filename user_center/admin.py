@@ -11,3 +11,5 @@ from user_center import models
 
 admin.site.register(models.UserProfile)
 admin.site.register(models.UserGroup)
+admin.site.register(models.Permission)
+admin.site.register(models.Roles)
