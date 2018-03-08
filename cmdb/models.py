@@ -59,9 +59,9 @@ class Asset(models.Model):
         (3, 'CloudServer'),
     )
     device_status_choices = (
-        (1, 'Active'),
-        (2, 'Free'),
-        (3, 'Delete'),
+        (1, '正常'),
+        (2, '空闲'),
+        (3, '删除'),
     )
     device_type_id = models.IntegerField(choices=device_type_choices, default=1)
     device_status_id = models.IntegerField(choices=device_status_choices, default=1)

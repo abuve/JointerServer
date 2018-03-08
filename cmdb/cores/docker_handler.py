@@ -8,9 +8,9 @@ import platform
 #from conf import settings
 
 if platform.system() == 'Linux':
-    sys.path.append('/app/project/AutoDeploy')
+    sys.path.append('/app/project/JointerServer')
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "AutoDeploy.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "JointerServer.settings")
 django.setup()
 
 from cmdb import models as CMDB_MODELS

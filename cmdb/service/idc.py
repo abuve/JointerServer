@@ -18,10 +18,10 @@ class Idc(BaseServiceList):
     def __init__(self):
         # 查询条件的配置
         condition_config = [
-            {'name': 'name', 'text': 'Idc', 'condition_type': 'input'},
-            {'name': 'name', 'text': 'Floor', 'condition_type': 'input'},
-            {'name': 'name', 'text': 'Phone', 'condition_type': 'input'},
-            {'name': 'name', 'text': 'Address', 'condition_type': 'input'},
+            {'name': 'name', 'text': '机房名称', 'condition_type': 'input'},
+            {'name': 'name', 'text': '楼层', 'condition_type': 'input'},
+            {'name': 'name', 'text': '联系电话', 'condition_type': 'input'},
+            {'name': 'name', 'text': '机房地址', 'condition_type': 'input'},
 
         ]
         # 表格的配置
@@ -35,40 +35,40 @@ class Idc(BaseServiceList):
             },
             {
                 'q': 'name',
-                'title': "Name",
+                'title': "机房名称",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@name'}},
                 'attr': {}
             },
             {
                 'q': 'floor',
-                'title': "Floor",
+                'title': "楼层",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@floor'}},
                 'attr': {}
             },
             {
                 'q': 'phone',
-                'title': "Phone",
+                'title': "联系电话",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@phone'}},
                 'attr': {}
             },
             {
                 'q': 'idc_address',
-                'title': "Address",
+                'title': "机房地址",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@idc_address'}},
                 'attr': {}
             },
             {
                 'q': None,
-                'title': "Options",
+                'title': "操作",
                 'display': 1,
                 'text': {
                     'content': '<div class="btn-group">' + \
-                                '<a type="button" class="btn btn-default btn-xs" href="/cmdb/edit-idc-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>' + \
-                               '<a type="button" class="btn btn-default btn-xs" onclick=delete_idc_data_fn({nid})><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>' + \
+                                '<a type="button" class="btn btn-default btn-xs" href="/cmdb/edit-idc-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' + \
+                               '<a type="button" class="btn btn-default btn-xs" onclick=delete_idc_data_fn({nid})><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a>' + \
                                '<button type="button" class="btn btn-default dropdown-toggle btn-xs"data-toggle="1dropdown"> <span class="caret"></span> <span class="sr-only">切换下拉菜单</span> </button> <ul class="dropdown-menu" role="menu" style="margin:2px 164px; min-width:130px"> <li><a href="#">More Option</a></li> </ul>' + \
                                 '</div>',
                     'kwargs': {'device_type_id': '@device_type_id', 'nid': '@id', 'name': '@name'}},

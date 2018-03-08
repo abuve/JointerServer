@@ -31,28 +31,28 @@ class Docker(BaseServiceList):
             },
             {
                 'q': 'obj_id',
-                'title': "Container ID",
+                'title': "实例ID",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@obj_id'}},
                 'attr': {}
             },
             {
                 'q': 'name',
-                'title': "Container Name",
+                'title': "实例名称",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@name'}},
                 'attr': {}
             },
             {
                 'q': 'asset__server__ipaddress',
-                'title': "Host IP",
+                'title': "宿主机IP地址",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@asset__server__ipaddress'}},
                 'attr': {}
             },
             {
                 'q': 'port',
-                'title': "Host Port",
+                'title': "宿主机端口",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@port'}},
                 'attr': {}
@@ -80,7 +80,7 @@ class Docker(BaseServiceList):
             },
             {
                 'q': None,
-                'title': "Options",
+                'title': "操作",
                 'display': 1,
                 'text': {
                     'content': '<div class="btn-group"><a type="button" href="/cmdb/asset-detail-{nid}.html" target="_blank" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Detail</a>   <a type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>  <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown"> <span class="caret"></span> </button> </div>',

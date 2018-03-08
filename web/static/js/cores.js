@@ -861,7 +861,7 @@
          */
         'TableEditMode': function (ths, body, specialInEditFunc, specialOutEditFunc) {
             if ($(ths).hasClass('btn-warning')) {
-                $(ths).removeClass('btn-warning').find('span').text('Edit');
+                $(ths).removeClass('btn-warning').find('span').text(' 编辑');
 
                 $(body).attr('edit-mode', 'false');
 
@@ -878,7 +878,7 @@
 
             } else {
                 //into edit mode
-                $(ths).addClass('btn-warning').find('span').text('Exit Edit');
+                $(ths).addClass('btn-warning').find('span').text(' 退出编辑');
                 $(body).attr('edit-mode', 'true');
 
                 $(body).find(':checkbox').each(function () {

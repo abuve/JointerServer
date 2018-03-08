@@ -17,11 +17,11 @@ class Server(BaseServiceList):
     def __init__(self):
         # 查询条件的配置
         condition_config = [
-            {'name': 'server__ipaddress', 'text': 'IP Address', 'condition_type': 'input'},
-            {'name': 'device_type_id', 'text': 'Asset Type', 'condition_type': 'select', 'global_name': 'device_type_list'},
-            {'name': 'device_status_id', 'text': 'Asset Status', 'condition_type': 'select','global_name': 'device_status_list'},
-            {'name': 'idc', 'text': 'IDC', 'condition_type': 'select','global_name': 'idc_list'},
-            {'name': 'sn', 'text': 'SN', 'condition_type': 'input'},
+            {'name': 'server__ipaddress', 'text': 'IP地址', 'condition_type': 'input'},
+            {'name': 'device_type_id', 'text': '资产类型', 'condition_type': 'select', 'global_name': 'device_type_list'},
+            {'name': 'device_status_id', 'text': '资产状态', 'condition_type': 'select','global_name': 'device_status_list'},
+            {'name': 'idc', 'text': 'IDC机房', 'condition_type': 'select','global_name': 'idc_list'},
+            {'name': 'sn', 'text': 'SN号', 'condition_type': 'input'},
         ]
         # 表格的配置
         table_config = [
@@ -34,28 +34,28 @@ class Server(BaseServiceList):
             },
             {
                 'q': 'server__ipaddress',
-                'title': "IP Addr",
+                'title': "IP地址",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@server__ipaddress'}},
                 'attr': {}
             },
             {
                 'q': 'server__hostname',
-                'title': "Hostname",
+                'title': "主机名",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@server__hostname'}},
                 'attr': {}
             },
             {
                 'q': 'sn',
-                'title': "SN",
+                'title': "SN号",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@sn'}},
                 'attr': {}
             },
             {
                 'q': 'device_type_id',
-                'title': "Asset Type",
+                'title': "资产类型",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@@device_type_list'}},
                 'attr': {'name': 'device_type_id', 'id': '@device_type_id', 'origin': '@device_type_list', 'edit-enable': 'true',
@@ -64,7 +64,7 @@ class Server(BaseServiceList):
             },
             {
                 'q': 'idc_id',
-                'title': "IDC",
+                'title': "IDC机房",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@@idc_list'}},
                 'attr': {'name': 'idc_id', 'id': '@idc_id', 'origin': '@idc_list', 'edit-enable': 'true',
@@ -73,35 +73,35 @@ class Server(BaseServiceList):
             },
             {
                 'q': 'business_unit__parent_unit__name',
-                'title': "Business Parent Unit",
+                'title': "归属业务线",
                 'display': 0,
                 'text': {'content': "{n}", 'kwargs': {'n': '@business_unit__parent_unit__name'}},
                 'attr': {}
             },
             {
                 'q': 'business_unit__name',
-                'title': "Business Unit",
+                'title': "归属业务线",
                 'display': 1,
                 'text': {'content': "<font color='red'>{business_unit__name}</font>", 'kwargs': {'business_unit__name': '@business_unit__name'}},
                 'attr': {}
             },
             {
                 'q': 'server__configuration',
-                'title': "Configuration",
+                'title': "配置信息",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@server__configuration'}},
                 'attr': {}
             },
             {
                 'q': 'memo',
-                'title': "Memo",
+                'title': "备注",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@memo'}},
                 'attr': {'name': 'memo', 'id': '@id', 'edit-enable': 'true', 'edit-type': 'input'}
             },
             {
                 'q': 'device_status_id',
-                'title': "Status",
+                'title': "状态",
                 'display': 1,
                 'text': {'content': '<a type="button" class="btn btn-{class} btn-xs">{n}</a>', 'kwargs': {'n': '@@device_status_list', 'class': '@@status_map'}},
                 'attr': {'name': 'device_status_id', 'id': '@device_status_id', 'origin': '@device_status_list', 'edit-enable': 'true',
@@ -109,19 +109,17 @@ class Server(BaseServiceList):
             },
             {
                 'q': None,
-                'title': "Options",
+                'title': "操作",
                 'display': 1,
                 'text': {
-                    'content': '<div class="btn-group"><a type="button" href="/cmdb/asset-detail-{nid}.html" target="_blank" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Detail</a>   <a type="button" class="btn btn-default btn-xs" onclick="business_update_fn({nid})"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Business</a>  <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown"> <span class="caret"></span> </button> </div>',
-                    #'content': "<a href='/cmdb/asset-detail-{nid}.html'>查看详细</a> | <a href='/edit-asset-{device_type_id}-{nid}.html'>编辑</a>",
+                    'content': '<div class="btn-group"><a type="button" href="/cmdb/asset-detail-{nid}.html" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 资产详情</a>   <a type="button" class="btn btn-default btn-xs" onclick="business_update_fn({nid})"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 修改业务线</a>  <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown"> <span class="caret"></span> </button> </div>',
                     'kwargs': {'device_type_id': '@device_type_id', 'nid': '@id'}},
                 'attr': {}
             },
         ]
         # 额外搜索条件
         extra_select = {
-            'server_title': 'select hostname from cmdb_server where cmdb_server.asset_id=cmdb_asset.id and cmdb_asset.device_type_id=1',
-            # 'network_title': 'select management_ip from repository_networkdevice where repository_networkdevice.asset_id=repository_asset.id and repository_asset.device_type_id=2',
+
         }
         super(Server, self).__init__(condition_config, table_config, extra_select)
 

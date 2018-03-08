@@ -2,9 +2,9 @@
 # -*- coding:utf-8 -*-
 import time
 import hashlib
-from AutoDeploy.settings import ASSET_AUTH_HEADER_NAME
-from AutoDeploy.settings import ASSET_AUTH_KEY
-from AutoDeploy.settings import ASSET_AUTH_TIME
+from JointerServer.settings import ASSET_AUTH_HEADER_NAME
+from JointerServer.settings import ASSET_AUTH_KEY
+from JointerServer.settings import ASSET_AUTH_TIME
 from django.http import JsonResponse
 
 ENCRYPT_LIST = [
