@@ -138,13 +138,3 @@ class AssetCreateView(WriteAccessLogsMixin, LoginRequiredMixin, PermissionRequir
 #             print(obj[1])
 #             print(Exception, e)
 #     return HttpResponse(1)
-
-def test(request):
-    get_asset_data = CMDB_MODELS.NewAssetApprovalZone.objects.all()
-    for obj in get_asset_data:
-        data_dic = json.loads(obj.data)
-        data_dic['ipaddress'] = obj.ipaddress
-        obj.data = json.dumps(data_dic)
-        obj.save()
-
-    return HttpResponse(1)
