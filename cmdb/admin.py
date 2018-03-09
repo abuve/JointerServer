@@ -2,6 +2,7 @@ from django.contrib import admin
 from cmdb import models
 from django.contrib.auth.models import User
 
+
 '''
 配置Django后台admin数据编辑显示
 '''

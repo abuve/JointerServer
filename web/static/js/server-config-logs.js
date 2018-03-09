@@ -38,27 +38,27 @@ var LogsTableInit = function () {
                 },
                 {
                     field: 'url',
-                    title: 'Logs Url'
+                    title: '日志地址'
                 },
                 {
                     field: 'memo',
-                    title: 'Logs Memo'
+                    title: '备注信息'
                 },
                 {
                     field: 'group_id__name',
-                    title: 'Group Name',
+                    title: '分组名称',
                 },
                 {
                     field: 'group_id__app_id__name',
-                    title: 'Application',
+                    title: '应用名称',
                 },
                 {
                     field: 'group_id__app_id__project_id__name',
-                    title: 'Project',
+                    title: '项目名称',
                 },
                 {
                     field: 'name',
-                    title: 'Options',
+                    title: '操作',
                     width: 240,
                     align: 'center',
                     formatter: docker_operateFormatter
@@ -95,8 +95,8 @@ var ButtonInit = function () {
 function docker_operateFormatter(value, row, index) {
         return [
             '<div class="btn-group">',
-            '<a type="button" class="btn btn-default btn-xs" onclick="edit_logs_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>',
-            '<a type="button" class="btn btn-default btn-xs" onclick="delete_logs_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>',
+            '<a type="button" class="btn btn-default btn-xs" onclick="edit_logs_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>',
+            '<a type="button" class="btn btn-default btn-xs" onclick="delete_logs_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a>',
             '<a type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Option</a> <button type="button" class="btn btn-default dropdown-toggle btn-xs"data-toggle="1dropdown"> <span class="caret"></span> <span class="sr-only">切换下拉菜单</span> </button> <ul class="dropdown-menu" role="menu" style="margin:2px 164px; min-width:130px"> <li><a href="#">More Option</a></li> </ul>',
             '</div>'
         ].join('');
@@ -111,7 +111,7 @@ function bond_logs_fn() {
 
 function delete_logs_data_fn(log_id) {
 
-    $("#delete_logs_html_area").html("Confirm remove Logs ID " + log_id + " ? All the data will be delete.")
+    $("#delete_logs_html_area").html("确认删除日志 ID " + log_id + " 吗?")
     $("#delete_server_logs_fn").attr("onclick", "delete_server_logs_fn( " + log_id + ")")
     $("#delete_logs_modal").modal('show')
 
@@ -142,7 +142,7 @@ function checkUrl(urlString){
     if(urlString!=""){
         var reg=/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;
         if(!reg.test(urlString)){
-            alert("Error Http Url...");
+            alert("请输入正确的URL地址...");
             return false;
         } else {
             return true;

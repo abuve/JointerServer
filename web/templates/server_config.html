@@ -82,10 +82,10 @@
 
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Application</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 应用列表</a>
             <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'server-config' response.data.id %}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{ response.data.name }}</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'server-config' response.data.id %}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Basic Info</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'server-config' response.data.id %}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 应用信息</a>
         </div>
     </ol>
 
@@ -100,19 +100,19 @@
                 <!-- 基础信息 -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Basic Info</h3>
+                        <h3 class="panel-title">基础信息</h3>
                     </div>
                     <table class="table table-bordered table-striped">
                         <tbody>
                             <tr>
                                 <td style="width: 150px;">
-                                    <strong>Application Name</strong>
+                                    <strong>应用名称</strong>
                                 </td>
                                 <td>
                                     {{ response.data.name }}
                                 </td>
                                 <td style="width: 150px;">
-                                    <strong>System Name</strong>
+                                    <strong>系统名称</strong>
                                 </td>
                                 <td>
                                     {{ response.data.project_id.name }}
@@ -120,13 +120,13 @@
                             </tr>
                             <tr>
                                 <td style="width: 150px;">
-                                    <strong>Application Type</strong>
+                                    <strong>应用类型</strong>
                                 </td>
                                 <td>
                                     {{ response.data.get_app_type_display }}
                                 </td>
                                 <td style="width: 150px;">
-                                    <strong>Nusiness Unit</strong>
+                                    <strong>业务线</strong>
                                 </td>
                                 <td>
                                     {{ response.data.project_id.business_unit.name }}
@@ -134,7 +134,7 @@
                             </tr>
                             <tr>
                                 <td style="width: 150px;">
-                                    <strong>OM</strong>
+                                    <strong>运维管理</strong>
                                 </td>
                                 <td colspan="3">
                                     admin1, admin2
@@ -142,7 +142,7 @@
                             </tr>
                             <tr>
                                 <td style="width: 150px;">
-                                    <strong>DEV</strong>
+                                    <strong>使用联系人</strong>
                                 </td>
                                 <td colspan="3">
                                     User1, User2
@@ -155,16 +155,16 @@
                 <!-- 应用日志地址 -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Logs Url</h3>
+                        <h3 class="panel-title">日志地址</h3>
                     </div>
                     <table class="table table-bordered table-striped">
                         <tbody>
                             <tr>
                                 <th style="width: 20%;">
-                                    Group Name
+                                    分组名称
                                 </th>
                                 <th style="width: 20%;">
-                                    Group Tag
+                                    分组类型
                                 </th>
                                 <th>
                                     Http Url
@@ -192,16 +192,16 @@
                 <!-- 资产信息展示 -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">App Asset Information</h3>
+                        <h3 class="panel-title">应用资产信息</h3>
                     </div>
                     <table class="table table-bordered table-striped">
                         <tbody>
                             <tr>
                                 <th style="width: 20%;">
-                                    Group Name
+                                    分组名称
                                 </th>
                                 <th style="width: 20%;">
-                                    Group Tag
+                                    分组类型
                                 </th>
                                 <th>
                                     IP
@@ -241,16 +241,16 @@
                 <!-- Docker信息展示 -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">App Docker Instance</h3>
+                        <h3 class="panel-title">应用Docker实例</h3>
                     </div>
                     <table class="table table-bordered table-striped">
                         <tbody>
                             <tr>
                                 <th>
-                                    Group Name
+                                    分组名称
                                 </th>
                                 <th>
-                                    Group Tag
+                                    分组类型
                                 </th>
                                 <th>
                                     Host IP
@@ -293,13 +293,13 @@
                 <!-- URL 映射关系 -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Url Maps</h3>
+                        <h3 class="panel-title">Url 关系映射</h3>
                     </div>
                     <table class="table table-bordered table-striped">
                         <tbody>
                             <tr>
                                 <th>
-                                    Group Tag
+                                    分组类型
                                 </th>
                                 <th>
                                     Http URL

@@ -22,10 +22,10 @@
 
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Application</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 应用列表</a>
             <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'server-config' response.data.id %}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{ response.data.name }}</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'server-config-urlmaps' response.data.id %}"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Url Maps</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'server-config-urlmaps' response.data.id %}"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> URL映射</a>
         </div>
     </ol>
 
@@ -39,7 +39,7 @@
             <div class="col-md-12">
 
                 <div id="urlmaps_toolbar" class="btn-group">
-                    <a class="btn btn-success no-radius" data-toggle="modal" data-target="#create_url_maps_modal" onclick="create_urlmaps_fn()"><i class="fa fa-plus-circle"></i> Create Url Maps</a>
+                    <a class="btn btn-success no-radius" data-toggle="modal" data-target="#create_url_maps_modal" onclick="create_urlmaps_fn()"><i class="fa fa-plus-circle"></i> 创建URL映射</a>
                 </div>
 
                 <table id="urlmaps_table"></table>
@@ -55,12 +55,11 @@
         <div class="modal-content" style="margin-top: 150px">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Url Maps Detail</h4>
+                <h4 class="modal-title" id="myModalLabel">Url映射详情</h4>
             </div>
             <div class="modal-body" id="detail_urlmaps_html"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="delete_server_logs_fn" onclick="update_server_logs_fn('delete')">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -72,16 +71,12 @@
         <div class="modal-content" style="margin-top: 150px">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Delete Server Log Url</h4>
+                <h4 class="modal-title" id="myModalLabel">删除URL映射</h4>
             </div>
-            <div class="modal-body" id="delete_urlmaps_html_area">
-
-                Confirm remove group  ? All the data will be delete.
-
-            </div>
+            <div class="modal-body" id="delete_urlmaps_html_area"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="delete_urlmaps_data_fn" onclick="update_server_logs_fn('delete')">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="delete_urlmaps_data_fn" onclick="update_server_logs_fn('delete')">删除</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -93,7 +88,7 @@
         <div class="modal-content" style="margin-top: 150px">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Create URL Maps</h4>
+                <h4 class="modal-title" id="myModalLabel">创建URL映射</h4>
             </div>
             <div class="modal-body">
 
@@ -102,13 +97,13 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <td style="line-height:34px;" align="right">Url Address : *</td>
+                            <td style="line-height:34px;" align="right">Url地址 : *</td>
                             <td>
-                                <input type="text" class="form-control" name="urlmaps_url" placeholder="Please enter url address...">
+                                <input type="text" class="form-control" name="urlmaps_url" placeholder="http://www.example.com/">
                             </td>
                         </tr>
                         <tr>
-                            <td style="line-height:34px;" align="right">Group Select : </td>
+                            <td style="line-height:34px;" align="right">选择分组 : *</td>
                             <td>
                                 <select class="form-control" name="urlmaps_group_id">
                                     {% for obj in response.data.groups.all %}
@@ -118,9 +113,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="line-height:34px;" align="right">Memo : *</td>
+                            <td style="line-height:34px;" align="right">备注 : </td>
                             <td>
-                                <textarea type="text" class="form-control" name="urlmaps_memo" placeholder="Url Maps Memo..."></textarea>
+                                <textarea type="text" class="form-control" name="urlmaps_memo" placeholder="备注信息..."></textarea>
                             </td>
                         </tr>
                         </tbody>
@@ -129,8 +124,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="update_urlmaps_fn" onclick="update_urlmaps_fn('post')">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="update_urlmaps_fn" onclick="update_urlmaps_fn('post')">更新</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->

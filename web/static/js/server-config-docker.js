@@ -48,27 +48,27 @@ var DockerTableInit = function () {
                 },
                 {
                     field: 'asset__server__ipaddress',
-                    title: 'Host IP',
+                    title: '宿主机 IP',
                 },
                 {
                     field: 'port',
-                    title: 'Host Port',
+                    title: '宿主机端口',
                 },
                 {
                     field: 'dockers__name',
-                    title: 'Group Name',
+                    title: '分组名称',
                 },
                 {
                     field: 'dockers__app_id__name',
-                    title: 'Application',
+                    title: '应用名称',
                 },
                 {
                     field: 'dockers__app_id__project_id__name',
-                    title: 'Project',
+                    title: '项目名称',
                 },
                 {
                     field: 'name',
-                    title: 'Options',
+                    title: '操作',
                     width: 240,
                     align: 'center',
                     formatter: docker_operateFormatter
@@ -105,8 +105,8 @@ var ButtonInit = function () {
 function docker_operateFormatter(value, row, index) {
         return [
             '<div class="btn-group">',
-            '<a type="button" class="btn btn-default btn-xs" onclick="edit_docker_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>',
-            '<a type="button" class="btn btn-default btn-xs" onclick="delete_docker_data_fn(' + row.dockers__id + ',' + row.id + ')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>',
+            '<a type="button" class="btn btn-default btn-xs" onclick="edit_docker_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>',
+            '<a type="button" class="btn btn-default btn-xs" onclick="delete_docker_data_fn(' + row.dockers__id + ',' + row.id + ')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a>',
             '<a type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Option</a> <button type="button" class="btn btn-default dropdown-toggle btn-xs"data-toggle="1dropdown"> <span class="caret"></span> <span class="sr-only">切换下拉菜单</span> </button> <ul class="dropdown-menu" role="menu" style="margin:2px 164px; min-width:130px"> <li><a href="#">More Option</a></li> </ul>',
             '</div>'
         ].join('');
@@ -136,7 +136,7 @@ function get_instance_type() {
 
 function delete_docker_data_fn(group_id, instance_id) {
 
-    $("#delete_docker_html_area").html("Confirm remove Docker ID " + instance_id + " ? All the data will be delete.")
+    $("#delete_docker_html_area").html("确认删除Docker实例ID " + instance_id + " 吗? 该操作仅会解除实例关系，不会删除资产数据！")
     $("#delete_server_docker_fn").attr("onclick", "delete_server_docker_fn( " + group_id + "," + instance_id + ")")
     $("#delete_docker_modal").modal('show')
 

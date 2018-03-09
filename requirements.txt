@@ -1,0 +1,4 @@
+Django==1.10
+PyMySQL==0.7.10
+PyYAML==3.12
+paramiko==2.4.0

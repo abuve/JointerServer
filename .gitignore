@@ -8,3 +8,4 @@ __pycache__/
 # Project
 settings.py
 migrations
+config_data

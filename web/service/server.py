@@ -32,28 +32,28 @@ class Server(BaseServiceList):
             },
             {
                 'q': 'name',
-                'title': "Name",
+                'title': "应用名称",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@name'}},
                 'attr': {}
             },
             {
                 'q': 'project_id__name',
-                'title': "Project",
+                'title': "项目名称",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@project_id__name'}},
                 'attr': {}
             },
             {
                 'q': 'app_type',
-                'title': "Type",
+                'title': "应用类型",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@app_type'}},
                 'attr': {}
             },
             {
                 'q': None,
-                'title': "Leader",
+                'title': "应用负责人",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': 'test_user'}},
                 'attr': {}
@@ -64,9 +64,9 @@ class Server(BaseServiceList):
                 'display': 1,
                 'text': {
                     'content': '<div class="btn-group">' + \
-                                '<a type="button" class="btn btn-default btn-xs" href="/server-config-{nid}.html" target="_blank"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Config</a>' + \
-                                '<a type="button" class="btn btn-default btn-xs" href="/edit-server-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>' + \
-                               '<a type="button" class="btn btn-default btn-xs" onclick=delete_server_data_fn({nid})><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>' + \
+                                '<a type="button" class="btn btn-default btn-xs" href="/server-config-{nid}.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 配置管理</a>' + \
+                                '<a type="button" class="btn btn-default btn-xs" href="/edit-server-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' + \
+                               '<a type="button" class="btn btn-default btn-xs" onclick=delete_server_data_fn({nid})><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a>' + \
                                '<button type="button" class="btn btn-default dropdown-toggle btn-xs"data-toggle="1dropdown"> <span class="caret"></span> <span class="sr-only">切换下拉菜单</span> </button> <ul class="dropdown-menu" role="menu" style="margin:2px 164px; min-width:130px"> <li><a href="#">More Option</a></li> </ul>' + \
                                 '</div>',
                     'kwargs': {'device_type_id': '@device_type_id', 'nid': '@id', 'name': '@name'}},

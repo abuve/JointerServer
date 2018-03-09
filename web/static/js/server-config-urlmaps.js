@@ -38,29 +38,29 @@ var LogsTableInit = function () {
                 },
                 {
                     field: 'url',
-                    title: 'Url',
+                    title: 'Url地址',
                     formatter: urlFormatter
                 },
                 {
                     field: 'memo',
-                    title: 'Memo'
+                    title: '备注信息'
                 },
                 {
                     field: 'group_id__name',
-                    title: 'Group Name',
+                    title: '分组名称',
                 },
                 {
                     field: 'group_id__app_id__name',
-                    title: 'Application',
+                    title: '应用名称',
                 },
                 {
                     field: 'group_id__app_id__project_id__name',
-                    title: 'Project',
+                    title: '项目名称',
                 },
                 {
                     field: 'name',
-                    title: 'Options',
-                    width: 420,
+                    title: '操作',
+                    width: 460,
                     align: 'center',
                     formatter: button_operateFoarmatter
                 },
@@ -102,15 +102,15 @@ function urlFormatter(value, row, index) {
 function button_operateFoarmatter(value, row, index) {
     return [
         '<div class="btn-group">',
-        '<a type="button" class="btn btn-default btn-xs" onclick="detail_urlmaps_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detail</a>',
-        '<a type="button" class="btn btn-default btn-xs no-radius" onclick="edit_urlmaps_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>',
-        '<a type="button" class="btn btn-default btn-xs no-radius" onclick="delete_urlmaps_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>',
+        '<a type="button" class="btn btn-default btn-xs" onclick="detail_urlmaps_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 映射详情</a>',
+        '<a type="button" class="btn btn-default btn-xs no-radius" onclick="edit_urlmaps_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>',
+        '<a type="button" class="btn btn-default btn-xs no-radius" onclick="delete_urlmaps_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a>',
         '</div>',
         '&nbsp;',
         '<div class="btn-group">',
-        '<a type="button" class="btn btn-primary btn-xs no-radius" onclick="update_urlmaps_group_fn(\'cloud\',' + row.group_id_id + ',' + row.id + ')"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Cloud</a>',
-        '<a type="button" class="btn btn-primary btn-xs no-radius" onclick="update_urlmaps_group_fn(\'forward\',' + row.group_id_id + ',' + row.id + ')"><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span> Forward</a>',
-        '<a type="button" class="btn btn-primary btn-xs" onclick="update_urlmaps_group_fn(\'docker\',' + row.group_id_id + ',' + row.id + ')"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> Docker</a>',
+        '<a type="button" class="btn btn-primary btn-xs no-radius" onclick="update_urlmaps_group_fn(\'cloud\',' + row.group_id_id + ',' + row.id + ')"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 一层转发</a>',
+        '<a type="button" class="btn btn-primary btn-xs no-radius" onclick="update_urlmaps_group_fn(\'forward\',' + row.group_id_id + ',' + row.id + ')"><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span> 二层转发</a>',
+        '<a type="button" class="btn btn-primary btn-xs" onclick="update_urlmaps_group_fn(\'docker\',' + row.group_id_id + ',' + row.id + ')"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> Docker实例</a>',
         '</div>'
     ].join('');
 }

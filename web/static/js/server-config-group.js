@@ -35,28 +35,28 @@ var GroupTableInit = function () {
             columns: [
                 {
                     field: 'id',
-                    title: 'Group ID'
+                    title: '分组ID'
                 },
                 {
                     field: 'name',
-                    title: 'Group Name'
+                    title: '分组名称'
                 },
                 {
                     field: 'app_id__name',
-                    title: 'Application'
+                    title: '应用名称'
                 },
                 {
                     field: 'app_id__project_id__name',
-                    title: 'Project'
+                    title: '项目名称'
                 },
                 {
                     field: 'group_type',
-                    title: 'Group Type',
+                    title: '分组类型',
                     formatter: group_type_formatter
                 },
                 {
                     field: 'name',
-                    title: 'Options',
+                    title: '操作',
                     width: 330,
                     align: 'center',
                     formatter: group_operateFormatter
@@ -81,20 +81,20 @@ var GroupTableInit = function () {
 function group_operateFormatter(value, row, index) {
     return [
         '<div class="btn-group">',
-        '<a type="button" class="btn btn-default btn-xs" onclick="edit_group_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>',
-        '<a type="button" class="btn btn-default btn-xs" onclick=delete_group_data_fn(' + row.id + ',' + JSON.stringify(row.name) + ')><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>',
+        '<a type="button" class="btn btn-default btn-xs" onclick="edit_group_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>',
+        '<a type="button" class="btn btn-default btn-xs" onclick=delete_group_data_fn(' + row.id + ',' + JSON.stringify(row.name) + ')><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a>',
         '<a type="button" class="btn btn-default btn-xs" onclick="get_yaml_conf_fn(' + row.id + ')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Docker YAML</a>',
         // '<a type="button" class="btn btn-default btn-xs" onclick="group_edit_fn(' + row.id + ')"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Instances</a>',
-        '<a type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Instance</a> <button type="button" class="btn btn-default dropdown-toggle btn-xs"data-toggle="dropdown"> <span class="caret"></span> <span class="sr-only">切换下拉菜单</span> </button> <ul class="dropdown-menu" role="menu" style="margin:2px 164px; min-width:130px"> <li><a href="#">More Option</a></li> </ul>',
+        '<a type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> 实例信息</a> <button type="button" class="btn btn-default dropdown-toggle btn-xs"data-toggle="dropdown"> <span class="caret"></span> <span class="sr-only">切换下拉菜单</span> </button> <ul class="dropdown-menu" role="menu" style="margin:2px 164px; min-width:130px"> <li><a href="#">More Option</a></li> </ul>',
         '</div>'
     ].join('');
 }
 
 function group_type_formatter(value, row, index) {
     if (row.group_type == 0) {
-        var btn_html = '<a type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Private</a>'
+        var btn_html = '<a type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> 私有分组</a>'
     } else if (row.group_type == 1) {
-        var btn_html = '<a type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Public</a>'
+        var btn_html = '<a type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 公共分组</a>'
     }
     return [
         '<div class="btn-group">' + btn_html + '</div>'
@@ -109,7 +109,7 @@ function create_group_fn() {
 
 function delete_group_data_fn(group_id, group_name) {
 
-    $("#group_html_area").html("Confirm remove group" + group_name + " ? All the data will be delete.")
+    $("#group_html_area").html("确认删除分组 <span style='font-weight:bold; color: red;'>" + group_name + "</span> 吗? 该分组所有相关数据将会被删除！")
     $("#delete_server_group_fn").attr("onclick", "update_server_group_fn('delete', " + group_id + ")")
     $("#delete_group_modal").modal('show')
 

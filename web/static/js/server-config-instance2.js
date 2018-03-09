@@ -36,27 +36,27 @@ var InstanceTableInit = function () {
             columns: [
                 {
                     field: 'id',
-                    title: 'Instance ID'
+                    title: '实例 ID'
                 },
                 {
                     field: 'server__ipaddress',
-                    title: 'IP Address'
+                    title: '实例IP地址'
                 },
                 {
                     field: 'instances__name',
-                    title: 'Group',
+                    title: '分组名称',
                 },
                 {
                     field: 'instances__app_id__name',
-                    title: 'Application',
+                    title: '应用名称',
                 },
                 {
                     field: 'instances__app_id__project_id__name',
-                    title: 'Project',
+                    title: '项目名称',
                 },
                 {
                     field: 'name',
-                    title: 'Options',
+                    title: '操作',
                     width: 240,
                     align: 'center',
                     formatter: instance_operateFormatter
@@ -94,8 +94,8 @@ function instance_operateFormatter(value, row, index) {
         console.log(row.instances__id)
         return [
             '<div class="btn-group">',
-            '<a type="button" class="btn btn-default btn-xs" onclick="edit_instance_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>',
-            '<a type="button" class="btn btn-default btn-xs" onclick="delete_instance_data_fn(' + row.instances__id + ',' + row.id + ')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>',
+            '<a type="button" class="btn btn-default btn-xs" onclick="edit_instance_data_fn(' + row.id + ')"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>',
+            '<a type="button" class="btn btn-default btn-xs" onclick="delete_instance_data_fn(' + row.instances__id + ',' + row.id + ')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a>',
             '<a type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Option</a> <button type="button" class="btn btn-default dropdown-toggle btn-xs"data-toggle="1dropdown"> <span class="caret"></span> <span class="sr-only">切换下拉菜单</span> </button> <ul class="dropdown-menu" role="menu" style="margin:2px 164px; min-width:130px"> <li><a href="#">More Option</a></li> </ul>',
             '</div>'
         ].join('');
@@ -125,7 +125,7 @@ function get_instance_type() {
 
 function delete_instance_data_fn(group_id, instance_id) {
 
-    $("#instance_html_area").html("Confirm remove Instance ID " + instance_id + " ? All the data will be delete.")
+    $("#instance_html_area").html("确认删除实例ID " + instance_id + " 吗? 该操作仅会解除实例关系，不会删除资产数据！")
     $("#delete_server_instance_fn").attr("onclick", "delete_server_instance_fn( " + group_id + "," + instance_id + ")")
     $("#delete_instance_modal").modal('show')
 
