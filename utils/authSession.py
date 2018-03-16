@@ -20,7 +20,6 @@ class SessionUpload:
                     url_perm_dic[perm_obj.url_name] = [perm_obj.url_method]
 
         self.request.session[self.request.user.username] = url_perm_dic
-        print(self.request.session.items())
 
     def checkout(self):
         request_method = self.request.method

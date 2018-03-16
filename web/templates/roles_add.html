@@ -1,0 +1,105 @@
+{% extends 'layout/_layout.html' %}
+
+{% block css %}
+
+    <style>
+        .selectbox{height:220px;margin:0px auto;}
+        .selectbox div{float:left;}
+        .selectbox .select-bar{padding:0 16px;}
+        .selectbox .select-bar select{width:300px;height:200px;border:1px #A0A0A4 solid;padding:4px;font-size:14px;font-family:"microsoft yahei";}
+        .btn-bar{}
+        .btn-bar p{margin-top:16px;}
+        .btn-bar p .btn{width:50px;height:30px;cursor:pointer;font-family:simsun;font-size:14px;}
+    </style>
+
+{% endblock %}
+
+{% block conent %}
+    <ol class="breadcrumb" style="margin-bottom: 0;">
+        <div class='btn-group btn-group-xs'>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> User Center</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Role Add</a>
+        </div>
+    </ol>
+    <div class="col-sm-7" style="padding: 20px 8px;">
+
+        <form class="form-horizontal" id="permission_add_form" role="form" action="/user_center/permission-json.html" method="post">
+
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <td style="line-height:34px;" align="right">Role Name : *</td>
+                    <td>
+                        <input type="text" class="form-control" name="role_name" placeholder="Enter role name...">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="line-height:34px;" align="right">Select Premission : *</td>
+                    <td>
+                        <div class="selectbox" style="margin: 0px -15px">
+                            <div class="select-bar">
+                                <select class="form-control" multiple="multiple" id="select1">
+                                    {% for obj in response.data %}
+                                        <option value="{{ obj.id }}">{{ obj.url_name }} / {{ obj.url_method }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="btn-bar">
+                                <p><span id="add"><input type="button" class="btn" value=">" title="移动选择项到右侧"/></span></p>
+                                <p><span id="add_all"><input type="button" class="btn" value=">>" title="全部移到右侧"/></span></p>
+                                <p><span id="remove"><input type="button" class="btn" value="<" title="移动选择项到左侧"/></span></p>
+                                <p><span id="remove_all"><input type="button" class="btn" value="<<" title="全部移到左侧"/></span></p>
+                            </div>
+                            <div class="select-bar">
+                                <select class="form-control" name="app_select" multiple="multiple" id="select2"></select>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="line-height:34px;" align="right">Memo : </td>
+                    <td>
+                        <input type="text" class="form-control" name="role_memo" placeholder="Enter role memo...">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <a type="submit" class="btn btn-primary" onclick="role_create_fn()"><i class="fa fa-check"></i> Create Role</a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/cores.js"></script>
+
+    <script type="text/javascript" src="/static/js/roles.js"></script>
+
+    <script>
+        $(function () {
+            $.initMenu('#menu_server');
+        });
+
+        function permission_create_fn() {
+{#            if ($('input[name="app_name"]').val().length == 0) {#}
+{#                alert("Please add app name.");#}
+{#                return false;#}
+{#            }#}
+            $("#permission_add_form").submit()
+        }
+
+    </script>
+{% endblock %}
