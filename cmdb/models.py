@@ -106,7 +106,7 @@ class Server(models.Model):
     cpu_count = models.IntegerField('CPU物理个数', null=True, blank=True)
     cpu_core_count = models.IntegerField('CPU核数', null=True, blank=True)
     cpu_model = models.CharField('CPU型号', max_length=128, null=True, blank=True)
-    create_date = models.DateTimeField(auto_now_add=True, blank=True)
+    create_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "服务器表"
