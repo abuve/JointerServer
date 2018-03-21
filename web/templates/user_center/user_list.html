@@ -9,8 +9,8 @@
 
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> User Center</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/user_center/user-list.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Users</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px" href="{% url 'dashboard' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'user_center-user-list' %}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 用户管理</a>
         </div>
     </ol>
 
@@ -21,7 +21,7 @@
 
                 <div class="col-md-offset-10 do-submit">
                     <a id="search_condition_submit" class="btn btn-primary no-radius">
-                        <i class="fa fa-search"></i> Search
+                        <i class="fa fa-search"></i> 搜索
                     </a>
                 </div>
 
@@ -53,7 +53,7 @@
             <div class="clearfix function-area">
                 <div class="btn-group custom-btn-group">
 {#                    <a class="btn btn-default no-radius" href="/add-project.html"><i class="fa fa-plus-circle"></i> Create Project</a>#}
-                    <a id="do_refresh" class="btn btn-default no-radius"><i class="fa fa-refresh"></i> Refresh</a>
+                    <a id="do_refresh" class="btn btn-default no-radius"><i class="fa fa-refresh"></i> 刷新</a>
                     <a id="handle_status" class="btn no-radius" tabindex="0" role="button" data-toggle="manual"
                        data-trigger="focus" data-container="body" data-html="true" data-placement="bottom" title="错误详细"
                        data-content=""></a>

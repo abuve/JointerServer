@@ -18,8 +18,8 @@ class Server(BaseServiceList):
     def __init__(self):
         # 查询条件的配置
         condition_config = [
-            {'name': 'name', 'text': 'App Name', 'condition_type': 'input'},
-            {'name': 'project_id__id', 'text': 'Project', 'condition_type': 'select', 'global_name': 'project_list'},
+            {'name': 'name', 'text': '应用名称', 'condition_type': 'input'},
+            {'name': 'project_id__id', 'text': '选择项目', 'condition_type': 'select', 'global_name': 'project_list'},
         ]
         # 表格的配置
         table_config = [
@@ -60,7 +60,7 @@ class Server(BaseServiceList):
             },
             {
                 'q': None,
-                'title': "Options",
+                'title': "操作",
                 'display': 1,
                 'text': {
                     'content': '<div class="btn-group">' + \

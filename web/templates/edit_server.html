@@ -8,9 +8,9 @@
 {% block conent %}
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Application</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Create App</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px" href="{% url 'dashboard' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'application-server' %}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 应用列表</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'application-edit-server' response.data.id %}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑应用 - {{ response.data.name }}</a>
         </div>
     </ol>
     <div class="col-sm-6" style="padding: 20px 8px;">
@@ -20,13 +20,13 @@
             <table class="table table-bordered table-striped">
                 <tbody>
                 <tr>
-                    <td style="line-height:34px;" align="right">App Name : *</td>
+                    <td style="line-height:34px;" align="right">应用名称 : *</td>
                     <td>
-                        <input type="text" class="form-control" name="app_name" placeholder="Enter app name..." value="{{ response.data.name }}">
+                        <input type="text" class="form-control" name="app_name" placeholder="请输入应用名称..." value="{{ response.data.name }}">
                     </td>
                 </tr>
                 <tr>
-                    <td style="line-height:34px;" align="right">Parent Project : *</td>
+                    <td style="line-height:34px;" align="right">选择项目 : *</td>
                     <td>
                         <select class="form-control" name="project_id">
                         {% for obj in project_info.data %}
@@ -36,7 +36,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="line-height:34px;" align="right">APP Type : *</td>
+                    <td style="line-height:34px;" align="right">应用类型 : *</td>
                     <td>
                         <select class="form-control" name="app_type">
                             <option value="java">JAVA</option>
@@ -53,7 +53,7 @@
 
             <div class="form-group">
                 <div class="col-sm-2">
-                    <a class="btn btn-primary" onclick="update_server_app_fn('put', '{{ response.data.id }}')"><i class="fa fa-check"></i> Update Application</a>
+                    <a class="btn btn-primary" onclick="update_server_app_fn('put', '{{ response.data.id }}')"><i class="fa fa-check"></i> 更新应用</a>
                 </div>
             </div>
 

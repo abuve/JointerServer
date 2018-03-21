@@ -18,7 +18,7 @@ class Project(BaseServiceList):
     def __init__(self):
         # 查询条件的配置
         condition_config = [
-            {'name': 'name', 'text': 'Project', 'condition_type': 'input'},
+            {'name': 'name', 'text': '项目名称', 'condition_type': 'input'},
         ]
         # 表格的配置
         table_config = [
@@ -31,14 +31,14 @@ class Project(BaseServiceList):
             },
             {
                 'q': 'name',
-                'title': "Name",
+                'title': "项目名称",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@name'}},
                 'attr': {}
             },
             {
                 'q': 'business_unit__name',
-                'title': "Business Unit",
+                'title': "业务线",
                 'display': 1,
                 'text': {'content': "<font color='red'>{business_unit__parent_unit_id__name}-{business_unit__name}</font>",
                          'kwargs': {'business_unit__name': '@business_unit__name', 'business_unit__parent_unit_id__name': '@business_unit__parent_unit_id__name'}},
@@ -54,14 +54,14 @@ class Project(BaseServiceList):
             },
             {
                 'q': None,
-                'title': "Options",
+                'title': "操作",
                 'display': 1,
                 'text': {
                     'content': '<div class="btn-group">' + \
-                               '<a type="button" class="btn btn-default btn-xs" href="/project/projectviews/{nid}.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> ProjectViews</a>' + \
-                               '<a type="button" class="btn btn-default btn-xs" href="/project/appviews/{nid}.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> AppViews</a>' + \
-                               '<a type="button" class="btn btn-default btn-xs" href="/edit-project-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>' + \
-                               '<a type="button" class="btn btn-default btn-xs" onclick=delete_project_data_fn({nid})><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>' + \
+                               '<a type="button" class="btn btn-default btn-xs" href="/project/projectviews/{nid}.html"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> 项目视图</a>' + \
+                               '<a type="button" class="btn btn-default btn-xs" href="/project/appviews/{nid}.html"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 应用视图</a>' + \
+                               '<a type="button" class="btn btn-default btn-xs" href="/edit-project-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' + \
+                               '<a type="button" class="btn btn-default btn-xs" onclick=delete_project_data_fn({nid})><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a>' + \
                                '<button type="button" class="btn btn-default dropdown-toggle btn-xs"data-toggle="1dropdown"> <span class="caret"></span> <span class="sr-only">切换下拉菜单</span> </button> <ul class="dropdown-menu" role="menu" style="margin:2px 164px; min-width:130px"> <li><a href="#">More Option</a></li> </ul>' + \
                                 '</div>',
                     'kwargs': {'device_type_id': '@device_type_id', 'nid': '@id', 'name': '@name'}},

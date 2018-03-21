@@ -1,7 +1,7 @@
 <div class="btn-group custom-btn-group" style="padding-bottom: 10px;">
-    <a class="btn btn-default" onclick="add_business_fn({% if response.data.parent_unit.id %}{{ response.data.parent_unit.id }}{% else %}{{ response.data.id }}{% endif %})"><i class="fa fa-plus-circle"></i> Add</a>
-    <a class="btn btn-default" onclick="delete_business_fn({{ response.data.id }}, '{{ response.data.name }}')"><i class="fa fa-plus-circle"></i> Delete</a>
-    <a class="btn btn-default" onclick="edit_business_fn({{ response.data.id }})"><i class="fa fa-plus-circle"></i> Edit</a>
+    <a class="btn btn-default" onclick="add_business_fn({% if response.data.parent_unit.id %}{{ response.data.parent_unit.id }}{% else %}{{ response.data.id }}{% endif %})"><i class="fa fa-plus-circle"></i> 添加</a>
+    <a class="btn btn-default" onclick="delete_business_fn({{ response.data.id }}, '{{ response.data.name }}')"><i class="fa fa-remove"></i> 删除</a>
+    <a class="btn btn-default" onclick="edit_business_fn({{ response.data.id }})"><i class="fa fa-edit"></i> 编辑</a>
     <a id="handle_status" class="btn" tabindex="0" role="button" data-toggle="manual" data-trigger="focus" data-container="body" data-html="true" data-placement="bottom" title="错误详细" data-content=""></a>
 </div>
 
@@ -10,15 +10,15 @@
     <table class="guige-table">
         <tbody>
         <tr>
-            <td class="title" style="width: 180px">Parent Unit</td>
+            <td class="title" style="width: 180px">父级业务线</td>
             <td colspan="4">{{ response.data.parent_unit.name }}</td>
         </tr>
         <tr>
-            <td class="title">Name</td>
+            <td class="title">名称</td>
             <td colspan="4">{{ response.data.name }}</td>
         </tr>
         <tr>
-            <td class="title">Business Admin</td>
+            <td class="title">管理员</td>
             <td colspan="4">
                 {% for obj in response.data.manager.all %}
                     {% for user in obj.users.all %}
@@ -29,7 +29,7 @@
 
         </tr>
         <tr>
-            <td class="title">Business Contact</td>
+            <td class="title">联系人</td>
             <td colspan="4">
                 {% for obj in response.data.contact.all %}
                     {% for user in obj.users.all %}
@@ -39,11 +39,11 @@
             </td>
         </tr>
         <tr>
-            <td class="title">Description</td>
+            <td class="title">业务线描述</td>
             <td colspan="4">{{ response.data.memo }}</td>
         </tr>
         <tr>
-            <td class="title">Create Date</td>
+            <td class="title">创建时间</td>
             <td colspan="4">{{ response.data.create_date | date:"Y-m-d H:i:s" }}</td>
         </tr>
 

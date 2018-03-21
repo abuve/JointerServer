@@ -17,8 +17,7 @@ class RolesConfig(BaseServiceList):
     def __init__(self):
         # 查询条件的配置
         condition_config = [
-            {'name': 'url_name', 'text': 'URL Name', 'condition_type': 'input'},
-            {'name': 'url_method', 'text': 'URL Method', 'condition_type': 'select', 'global_name': 'url_method_list'},
+            {'name': 'name', 'text': '角色名称', 'condition_type': 'input'},
         ]
         # 表格的配置
         table_config = [
@@ -31,24 +30,24 @@ class RolesConfig(BaseServiceList):
             },
             {
                 'q': 'name',
-                'title': "Role Name",
+                'title': "角色名称",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@name'}},
                 'attr': {}
             },
             {
                 'q': 'memo',
-                'title': "Memo",
+                'title': "备注",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@memo'}},
                 'attr': {}
             },
             {
                 'q': None,
-                'title': "Options",
+                'title': "操作",
                 'display': 1,
                 'text': {
-                    'content': '<div class="btn-group"><a type="button" class="btn btn-default btn-xs" href="/user_center/roles-edit-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Url</a><a type="button" class="btn btn-default btn-xs" onclick="delete_role_fn({nid})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a></div>',
+                    'content': '<div class="btn-group"><a type="button" class="btn btn-default btn-xs" href="/user_center/roles-edit-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a><a type="button" class="btn btn-default btn-xs" onclick="delete_role_fn({nid})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a></div>',
                     'kwargs': {'device_type_id': '@device_type_id', 'nid': '@id'}},
                 'attr': {'style': 'text-align: left; width: 260px'}
             },

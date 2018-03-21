@@ -31,13 +31,13 @@ urlpatterns = [
 
 
     url(r'^$', login_required(server.ServerListView.as_view())),
-    url(r'^server.html$', login_required(server.ServerListView.as_view())),
-    url(r'^servers.html$', login_required(server.ServerJsonView.as_view())),
+    url(r'^server.html$', login_required(server.ServerListView.as_view()), name='application-server'),
+    url(r'^servers.html$', login_required(server.ServerJsonView.as_view()), name='application-servers'),
     url(r'^server-config-(?P<asset_nid>\d+).html$', login_required(server.ServerDetailView.as_view()), name='server-config'),
-    url(r'^add-server.html$', login_required(server.AddServerView.as_view())),
-    url(r'^edit-server-(?P<server_nid>\d+).html$', login_required(server.UpdateServerView.as_view())),
+    url(r'^add-server.html$', login_required(server.AddServerView.as_view()), name='application-add-server'),
+    url(r'^edit-server-(?P<server_nid>\d+).html$', login_required(server.UpdateServerView.as_view()), name='application-edit-server'),
 
-    url(r'^get_app_by_project/$', login_required(server.get_app_by_project)),
+    url(r'^get_app_by_project/$', login_required(server.get_app_by_project), name='application-get-app-by-project'),
 
     # url(r'^update-server-group.html$', server.UpdateServerGroupView.as_view()),
     # url(r'^server-groups-(?P<asset_nid>\d+).html$', server.ServerDetaiGroupView.as_view()),
@@ -48,19 +48,16 @@ urlpatterns = [
 
     #url(r'^update-yaml-nginx.html$', server.UpdateYamlConfView.as_view()),
 
-    url(r'^mission.html$', login_required(mission.MissionListView.as_view())),
-    url(r'^missions.html$', login_required(mission.MissionJsonView.as_view())),
-    url(r'^mission-create.html$', login_required(mission.MissionCreateView.as_view())),
-    url(r'^mission-detail-(?P<mission_id>\d+).html$', login_required(mission.MissionDetailListView.as_view())),
-    url(r'^mission-detail-json-(?P<mission_id>\d+).html$', login_required(mission.MissionDetailListJsonView.as_view())),
+    url(r'^mission.html$', login_required(mission.MissionListView.as_view()), name='mission-mission-list'),
+    url(r'^missions.html$', login_required(mission.MissionJsonView.as_view()), name='mission-mission-json'),
+    url(r'^mission-create.html$', login_required(mission.MissionCreateView.as_view()), name='mission-mission-create'),
+    url(r'^mission-detail-(?P<mission_id>\d+).html$', login_required(mission.MissionDetailListView.as_view()), name='mission-mission-detail'),
+    url(r'^mission-detail-json-(?P<mission_id>\d+).html$', login_required(mission.MissionDetailListJsonView.as_view()), name='mission-mission-detail-json'),
 
-    url(r'^mission-detail-json-(?P<mission_id>\d+).html$', login_required(mission.MissionDetailListJsonView.as_view())),
-
-
-    url(r'^project.html$', login_required(project.ProjectListView.as_view())),
-    url(r'^projects.html$', login_required(project.ProjectJsonView.as_view())),
-    url(r'^add-project.html$', login_required(project.AddProjectView.as_view())),
-    url(r'^edit-project-(?P<project_nid>\d+).html$', login_required(project.UpdateProjectView.as_view())),
+    url(r'^project.html$', login_required(project.ProjectListView.as_view()), name='project-project-list'),
+    url(r'^projects.html$', login_required(project.ProjectJsonView.as_view()), name='project-project-json'),
+    url(r'^add-project.html$', login_required(project.AddProjectView.as_view()), name='project-add-project'),
+    url(r'^edit-project-(?P<project_nid>\d+).html$', login_required(project.UpdateProjectView.as_view()), name='project-edit-project'),
 
     url(r'^project/projectviews/(?P<project_nid>\d+).html$', login_required(project.ProjectProjectViewsView.as_view()), name='project-projectviews'),
     url(r'^project/appviews/(?P<project_nid>\d+).html$', login_required(project.ProjectAppViewsView.as_view()), name='project-appviews'),

@@ -58,8 +58,8 @@
 
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/cmdb/business-list.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Business Unit</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px" href="{% url 'dashboard' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'cmdb-business-list' %}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 业务线管理</a>
         </div>
     </ol>
 
@@ -80,7 +80,7 @@
             <div class="col-md-10">
 
                 <div id="business_detail_html_area">
-                    <p class="bg-warning">Please select business info.</p>
+                    <p class="bg-warning">请选择业务线</p>
                 </div>
 
             </div>
@@ -95,41 +95,41 @@
             <div class="modal-content" style="margin-top: 150px">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Business Unit Add</h4>
+                    <h4 class="modal-title" id="myModalLabel">添加业务线信息</h4>
                 </div>
                 <div class="modal-body">
                     <form id="add_business_form">
                         <table class="table table-bordered table-striped">
                             <tbody>
                             <tr>
-                                <td style="line-height:34px;" align="right">Parent Unit : </td>
+                                <td style="line-height:34px;" align="right">父级业务线 : </td>
                                 <td>
                                     <select class="form-control" id="add_business_parent_id" name="add_business_parent_id">
-                                        <option value="None">Please Select Parent Business Unit</option>
+                                        <option value="None">请选择父级业务线</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="line-height:34px;" align="right">Business Name : *</td>
+                                <td style="line-height:34px;" align="right">业务线名称 : *</td>
                                 <td>
-                                    <input type="text" class="form-control" name="add_business_name" placeholder="Please enter Business Name...">
+                                    <input type="text" class="form-control" name="add_business_name" placeholder="请输入业务线名称...">
                                 </td>
                             </tr>
                             <tr>
-                                <td style="line-height:34px;" align="right">Admin Groups : </td>
+                                <td style="line-height:34px;" align="right">管理员组 : </td>
                                 <td>
                                     <select id="add_business_admin_id" multiple="multiple" class="form-control" style="width: 100%"></select>
 
                                 </td>
                             </tr>
                             <tr>
-                                <td style="line-height:34px;" align="right">Contact Groups : </td>
+                                <td style="line-height:34px;" align="right">联系人组 : </td>
                                 <td>
                                     <select id="add_business_contact_id" multiple="multiple" class="form-control" style="width: 100%"></select>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="line-height:34px;" align="right">Business Description : </td>
+                                <td style="line-height:34px;" align="right">业务线描述 : </td>
                                 <td>
                                     <textarea type="textarea" class="form-control" id="add_business_memo" placeholder=""></textarea>
                                 </td>
@@ -140,8 +140,8 @@
                 </div>
                 <div class="modal-footer">
                     <div id="add_business_error"></div>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="business_update_fn" onclick="do_post_business_fn()">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="business_update_fn" onclick="do_post_business_fn()">保存</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->

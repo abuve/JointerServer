@@ -17,8 +17,8 @@ class PermissionConfig(BaseServiceList):
     def __init__(self):
         # 查询条件的配置
         condition_config = [
-            {'name': 'url_name', 'text': 'URL Name', 'condition_type': 'input'},
-            {'name': 'url_method', 'text': 'URL Method', 'condition_type': 'select', 'global_name': 'url_method_list'},
+            {'name': 'url_name', 'text': 'URL名称', 'condition_type': 'input'},
+            {'name': 'url_method', 'text': 'URL方法', 'condition_type': 'select', 'global_name': 'url_method_list'},
         ]
         # 表格的配置
         table_config = [
@@ -31,31 +31,31 @@ class PermissionConfig(BaseServiceList):
             },
             {
                 'q': 'url_name',
-                'title': "URL NAME",
+                'title': "URL名称",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@url_name'}},
                 'attr': {}
             },
             {
                 'q': 'url_method',
-                'title': "Url Method",
+                'title': "Url方法",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@url_method'}},
                 'attr': {}
             },
             {
                 'q': 'memo',
-                'title': "Memo",
+                'title': "备注",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@memo'}},
                 'attr': {}
             },
             {
                 'q': None,
-                'title': "Options",
+                'title': "操作",
                 'display': 1,
                 'text': {
-                    'content': '<div class="btn-group"><a type="button" class="btn btn-default btn-xs" href="/user_center/permission-edit-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Url</a><a type="button" class="btn btn-default btn-xs" onclick="delete_url_fn({nid})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a></div>',
+                    'content': '<div class="btn-group"><a type="button" class="btn btn-default btn-xs" href="/user_center/permission-edit-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a><a type="button" class="btn btn-default btn-xs" onclick="delete_url_fn({nid})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a></div>',
                     # 'content': "<a href='/cmdb/asset-detail-{nid}.html'>查看详细</a> | <a href='/edit-asset-{device_type_id}-{nid}.html'>编辑</a>",
                     'kwargs': {'device_type_id': '@device_type_id', 'nid': '@id'}},
                 'attr': {'style': 'text-align: left; width: 260px'}

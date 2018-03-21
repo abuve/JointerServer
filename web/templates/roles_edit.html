@@ -17,9 +17,9 @@
 {% block conent %}
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> User Center</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Role Add</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px" href="{% url 'dashboard' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'user_center-roles-list' %}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 角色管理</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'user_center-roles-add' %}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 编辑角色 - {{ response.data.name }}</a>
         </div>
     </ol>
     <div class="col-sm-7" style="padding: 20px 8px;">
@@ -29,14 +29,14 @@
             <table class="table table-bordered table-striped">
                 <tbody>
                 <tr>
-                    <td style="line-height:34px;" align="right">Role Name : *</td>
+                    <td style="line-height:34px;" align="right">角色名称 : *</td>
                     <td>
-                        <input type="text" class="form-control" name="role_name" placeholder="Enter role name..." value="{{ response.data.name }}">
+                        <input type="text" class="form-control" name="role_name" placeholder="请输入角色名称..." value="{{ response.data.name }}">
                         <input type="hidden" name="role_id" value="{{ response.data.id }}">
                     </td>
                 </tr>
                 <tr>
-                    <td style="line-height:34px;" align="right">Select Premission : *</td>
+                    <td style="line-height:34px;" align="right">选择权限 : *</td>
                     <td>
                         <div class="selectbox" style="margin: 0px -15px">
                             <div class="select-bar">
@@ -64,9 +64,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="line-height:34px;" align="right">Memo : </td>
+                    <td style="line-height:34px;" align="right">角色备注 : </td>
                     <td>
-                        <input type="text" class="form-control" name="role_memo" placeholder="Enter role memo..." value="{{ response.data.memo }}">
+                        <input type="text" class="form-control" name="role_memo" placeholder="请输入角色备注..." value="{{ response.data.memo }}">
                     </td>
                 </tr>
                 </tbody>
@@ -74,7 +74,7 @@
 
             <div class="form-group">
                 <div class="col-sm-2">
-                    <a type="submit" class="btn btn-primary" onclick="role_update_fn()"><i class="fa fa-check"></i> Update Role</a>
+                    <a type="submit" class="btn btn-primary" onclick="role_update_fn()"><i class="fa fa-check"></i> 更新角色</a>
                 </div>
             </div>
 

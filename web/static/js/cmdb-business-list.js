@@ -48,7 +48,7 @@ function add_business_fn(obj_id) {
             console.log(data)
             if (data.status) {
                 $("#add_business_parent_id").html("")
-                $("#add_business_parent_id").append("<option value=''>Create Parent unit</option>")
+                $("#add_business_parent_id").append("<option value=''>创建一个父级业务线</option>")
                 for(var i in data.data){
                     if (data.data[i].pId == 0) {
                         $("#add_business_parent_id").append("<option value=" + data.data[i].id + ">" + data.data[i].name + "</option>")
@@ -146,7 +146,6 @@ function edit_business_fn(obj_id) {
 
     // 绑定button为put事件
     $("#business_update_fn").attr("onclick", "do_put_business_fn(" + obj_id + ")")
-    $("#business_update_fn").html("Edit")
 
     $.ajax({
         url: '/cmdb/business-json.html?edit=true&obj_id=' + obj_id,

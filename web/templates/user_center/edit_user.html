@@ -12,9 +12,9 @@
 {% block conent %}
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> User Center</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/user_center/user-list.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Users</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Edite User</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px" href="{% url 'dashboard' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'user_center-user-list' %}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 用户管理</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'user_center-edit-user' response.data.id %}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑用户</a>
         </div>
     </ol>
     <div class="col-sm-6" style="padding: 20px 8px;">
@@ -24,14 +24,14 @@
             <table class="table table-bordered table-striped">
                 <tbody>
                 <tr>
-                    <td style="line-height:34px;" align="right">Username : *</td>
+                    <td style="line-height:34px;" align="right">用户名 : *</td>
                     <td>
                         <input type="text" class="form-control" name="user_name" placeholder="Enter user name..." value="{{ response.data.username}}" disabled>
                     </td>
                 </tr>
                 <tr>
 
-                    <td style="line-height:34px;" align="right">Phone : *</td>
+                    <td style="line-height:34px;" align="right">联系电话 : *</td>
                     <td>
                         <input type="text" class="form-control" name="user_phone" placeholder="Enter user phone..." value="{{ response.data.phone}}" onkeyup="value=value.replace(/[^\d]/g,'')">
                     </td>
@@ -39,7 +39,7 @@
                 </tr>
                 <tr>
 
-                    <td style="line-height:34px;" align="right">Email : *</td>
+                    <td style="line-height:34px;" align="right">邮箱 : *</td>
                     <td>
                         <input type="text" class="form-control" name="user_email" placeholder="Enter user email..." value="{{ response.data.email}}">
                     </td>
@@ -47,7 +47,7 @@
                 </tr>
                 <tr>
 
-                    <td style="line-height:34px;" align="right">Department : *</td>
+                    <td style="line-height:34px;" align="right">部门 : *</td>
                     <td>
                         <input type="text" class="form-control" name="user_department" placeholder="Enter user department..." value="{{ response.data.department}}">
                     </td>
@@ -55,7 +55,7 @@
                 </tr>
 
                 <tr>
-                    <td style="line-height:34px;" align="right">Group : *</td>
+                    <td style="line-height:34px;" align="right">分组 : *</td>
                     <td>
                         <select class="form-control" name="user_group" multiple="multiple">
 
@@ -79,7 +79,7 @@
 
             <div class="form-group">
                 <div class="col-sm-2">
-                    <a class="btn btn-primary" onclick="update_user_app_fn('put', '{{ response.data.id }}')"><i class="fa fa-check"></i> Update User</a>
+                    <a class="btn btn-primary" onclick="update_user_app_fn('put', '{{ response.data.id }}')"><i class="fa fa-check"></i> 更新用户信息</a>
                 </div>
             </div>
 

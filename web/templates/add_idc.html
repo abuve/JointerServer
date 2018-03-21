@@ -12,9 +12,9 @@
 {% block conent %}
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/cmdb/idc.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> IDC</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Create IDC</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px" href="{% url 'dashboard' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'cmdb-idc-list' %}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> IDC机房列表</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'cmdb-add-idc' %}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加IDC</a>
         </div>
     </ol>
     <div class="col-sm-6" style="padding: 20px 8px;">

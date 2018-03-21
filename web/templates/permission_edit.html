@@ -8,9 +8,9 @@
 {% block conent %}
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> User Center</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Url Add</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px" href="{% url 'dashboard' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'user_center-permission-list' %}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 权限管理</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'user_center-permission-edit' response.data.id %}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑URL配置 - {{ response.data.url_name }}</a>
         </div>
     </ol>
     <div class="col-sm-6" style="padding: 20px 8px;">
@@ -20,14 +20,14 @@
             <table class="table table-bordered table-striped">
                 <tbody>
                 <tr>
-                    <td style="line-height:34px;" align="right">Url Name : *</td>
+                    <td style="line-height:34px;" align="right">Url名称 : *</td>
                     <td>
                         <input type="text" class="form-control" name="url_name" placeholder="Enter url name..." value="{{ response.data.url_name }}">
                         <input type="hidden" name="obj_id" value="{{ response.data.id }}">
                     </td>
                 </tr>
                 <tr>
-                    <td style="line-height:34px;" align="right">Url Method : *</td>
+                    <td style="line-height:34px;" align="right">Http方法 : *</td>
                     <td>
                         <select class="form-control" name="url_method">
                             <option value="GET">GET</option>
@@ -38,7 +38,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="line-height:34px;" align="right">Memo : </td>
+                    <td style="line-height:34px;" align="right">备注 : </td>
                     <td>
                         <input type="text" class="form-control" name="url_memo" placeholder="Enter url memo..." value="{{ response.data.memo }}">
                     </td>
@@ -48,7 +48,7 @@
 
             <div class="form-group">
                 <div class="col-sm-2">
-                    <a type="submit" class="btn btn-primary" onclick="permission_update_fn()"><i class="fa fa-check"></i> Update Url Permission</a>
+                    <a type="submit" class="btn btn-primary" onclick="permission_update_fn()"><i class="fa fa-check"></i> 更新URL配置</a>
                 </div>
             </div>
 

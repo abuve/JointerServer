@@ -25,11 +25,11 @@ class UserProfile(BaseServiceList):
     def __init__(self):
         # 查询条件的配置
         condition_config = [
-            {'name': 'username', 'text': 'Username', 'condition_type': 'input'},
-            {'name': 'phone', 'text': 'Phone', 'condition_type': 'input'},
-            {'name': 'department', 'text': 'Department', 'condition_type': 'input'},
-            {'name': 'email', 'text': 'Email', 'condition_type': 'input'},
-            {'name': 'groups__id', 'text': 'Groups', 'condition_type': 'select', 'global_name': 'group_list'}
+            {'name': 'username', 'text': '用户名', 'condition_type': 'input'},
+            {'name': 'phone', 'text': '电话', 'condition_type': 'input'},
+            {'name': 'department', 'text': '部门', 'condition_type': 'input'},
+            {'name': 'email', 'text': '邮箱', 'condition_type': 'input'},
+            {'name': 'groups__id', 'text': '分组', 'condition_type': 'select', 'global_name': 'group_list'}
         ]
         # 表格的配置
         table_config = [
@@ -42,35 +42,35 @@ class UserProfile(BaseServiceList):
             },
             {
                 'q': 'username',
-                'title': "Username",
+                'title': "用户名",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@username'}},
                 'attr': {}
             },
             {
                 'q': 'phone',
-                'title': "Phone",
+                'title': "电话",
                 'display': 1,
                 'text': {'content': "{phone}", 'kwargs': {'phone': '@phone'}},
                 'attr': {}
             },
             {
                 'q': 'department',
-                'title': "Department",
+                'title': "部门",
                 'display': 1,
                 'text': {'content': "{department}", 'kwargs': {'department': '@department'}},
                 'attr': {}
             },
             {
                 'q': 'email',
-                'title': "Email",
+                'title': "邮箱",
                 'display': 1,
                 'text': {'content': "{email}", 'kwargs': {'email': '@email'}},
                 'attr': {}
             },
             {
                 'q': 'roles__name',
-                'title': "Roles",
+                'title': "角色",
                 'display': 1,
                 'text': {'content': "{n}", 'kwargs': {'n': '@roles__name'}},
                 'attr': {},
@@ -78,7 +78,7 @@ class UserProfile(BaseServiceList):
             },
             {
                 'q': 'user_groups__name',
-                'title': "groups",
+                'title': "分组",
                 'display': 1,
                 'text': {'content': "{user_groups__name}", 'kwargs': {'user_groups__name': '@user_groups__name'}},
                 'attr': {},
@@ -86,19 +86,19 @@ class UserProfile(BaseServiceList):
             },
             {
                 'q': 'last_login',
-                'title': "Last_login",
+                'title': "上次登录时间",
                 'display': 1,
                 'text': {'content': "{last_login}", 'kwargs': {'last_login': '@last_login'}},
                 'attr': {}
             },
             {
                 'q': None,
-                'title': "Options",
+                'title': "操作",
                 'display': 1,
                 'text': {
                     'content': '<div class="btn-group">' + \
-                                '<a type="button" class="btn btn-default btn-xs" href="/user_center/edit-user-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>' + \
-                               '<a type="button" class="btn btn-default btn-xs" onclick=delete_user_data_fn({nid})><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>' + \
+                                '<a type="button" class="btn btn-default btn-xs" href="/user_center/edit-user-{nid}.html"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑</a>' + \
+                               '<a type="button" class="btn btn-default btn-xs" onclick=delete_user_data_fn({nid})><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除</a>' + \
                                '<button type="button" class="btn btn-default dropdown-toggle btn-xs"data-toggle="1dropdown"> <span class="caret"></span> <span class="sr-only">切换下拉菜单</span> </button> <ul class="dropdown-menu" role="menu" style="margin:2px 164px; min-width:130px"> <li><a href="#">More Option</a></li> </ul>' + \
                                 '</div>',
                     'kwargs': {'device_type_id': '@device_type_id', 'nid': '@id', 'name': '@name'}},

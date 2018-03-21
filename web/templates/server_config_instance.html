@@ -12,8 +12,8 @@
 
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 应用列表</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px" href="{% url 'dashboard' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'application-server' %}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 应用列表</a>
             <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'server-config' response.data.id %}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{ response.data.name }}</a>
             <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'server-config-instance' response.data.id %}"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span> 实例管理</a>
         </div>

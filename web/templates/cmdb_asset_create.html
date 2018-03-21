@@ -13,9 +13,9 @@
 {% block conent %}
     <ol class="breadcrumb" style="margin-bottom: 0;">
         <div class='btn-group btn-group-xs'>
-            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="/server.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Asset Infomation</a>
-            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Asset Create</a>
+            <a type="button" class="btn btn-default btn-arrow-right btn-arrow-left:before" style="color:#1c5a9c; padding-left:10px" href="{% url 'dashboard' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 控制面板</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'cmdb-server-list' %}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 服务器列表</a>
+            <a type="button" class="btn btn-default btn-arrow-right" style="color:#1c5a9c;" href="{% url 'cmdb-asset-create' %}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新建资产</a>
         </div>
     </ol>
     <div class="col-sm-8" style="padding: 20px 8px;">
@@ -25,7 +25,7 @@
             <table class="table table-bordered table-striped">
                 <tbody>
                 <tr>
-                    <td style="width:200px;line-height:34px;" align="right">Asset Type : *</td>
+                    <td style="width:200px;line-height:34px;" align="right">资产类型 : *</td>
                     <td colspan="3">
                         <select class="form-control" name="device_type_id">
                             {% for obj in response.data.asset_type %}
@@ -34,19 +34,19 @@
                         </select>
                     </td>
 
-                    <td style="line-height:34px;" align="right">Hostname : </td>
+                    <td style="line-height:34px;" align="right">主机名 : </td>
                     <td>
-                        <input type="text" class="form-control" name="hostname" placeholder="Enter Hostname">
+                        <input type="text" class="form-control" name="hostname" placeholder="请输入主机名">
                     </td>
 
                 </tr>
                 <tr>
 
-                    <td style="line-height:34px;" align="right">Business Unit : *</td>
+                    <td style="line-height:34px;" align="right">业务线 : *</td>
                     <td colspan="3">
                         <div class="btn-group btn-group-justified" role="group" aria-label="..." style="display: block">
                             <div id="business_tree_btn" class="btn-group" role="group">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:left;" onclick="load_tree_data()"><span id="business_select_text">Select Business Unit</span> <span class="caret"></span></button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:left;" onclick="load_tree_data()"><span id="business_select_text">请选择业务线</span> <span class="caret"></span></button>
                                 <ul class="dropdown-menu model-group-list">
                                     <div class="content_wrap">
                                         <div class="zTreeDemoBackground left">
@@ -59,7 +59,7 @@
                         <input type="hidden" name="business_unit_id">
                     </td>
 
-                    <td style="line-height:34px;" align="right">IDC : *</td>
+                    <td style="line-height:34px;" align="right">机房 : *</td>
                     <td>
                         <select class="form-control" name="idc_id">
                         {% for obj in response.data.idc %}
@@ -70,31 +70,31 @@
 
                 </tr>
                 <tr>
-                    <td style="line-height:34px;" align="right">IP Address : *</td>
+                    <td style="line-height:34px;" align="right">IP地址 : *</td>
                     <td colspan="5">
-                        <input type="text" class="form-control" name="ipaddress" placeholder="Enter IP Address">
+                        <input type="text" class="form-control" name="ipaddress" placeholder="IP地址">
                     </td>
                 </tr>
                 <tr>
-                    <td style="line-height:34px;" align="right">Manage IP Address : </td>
+                    <td style="line-height:34px;" align="right">管理IP地址 : </td>
                     <td colspan="5">
-                        <input type="text" class="form-control" name="manage_ip" placeholder="Enter Manage IP Address">
+                        <input type="text" class="form-control" name="manage_ip" placeholder="管理卡IP地址">
                     </td>
                 </tr>
                 <tr>
-                    <td style="line-height:34px;" align="right">CPU Cores : </td>
+                    <td style="line-height:34px;" align="right">CPU核数 : </td>
                     <td>
-                        <input type="text" class="form-control" name="cpu_count" placeholder="Enter CPU cores">
+                        <input type="text" class="form-control" name="cpu_count" placeholder="CPU核心数">
                     </td>
 
-                    <td style="line-height:34px;" align="right">Memory Size : </td>
+                    <td style="line-height:34px;" align="right">内存容量 : </td>
                     <td>
-                        <input type="text" class="form-control" name="Memory" placeholder="Enter Memory size, Unit GB">
+                        <input type="text" class="form-control" name="Memory" placeholder="内存容量 单位GB">
                     </td>
 
-                    <td style="line-height:34px;" align="right">Disk Size : </td>
+                    <td style="line-height:34px;" align="right">磁盘容量 : </td>
                     <td>
-                        <input type="text" class="form-control" name="DeviceSize" placeholder="Enter Disk size, Unit GB">
+                        <input type="text" class="form-control" name="DeviceSize" placeholder="磁盘容量 单位GB">
                     </td>
                 </tr>
                 </tbody>
@@ -102,8 +102,8 @@
 
             <div class="col-sm-2 right">
                 <div class="form-group right">
-                    <button type="button" class="btn btn-default" onclick="window.history.go(-1)"><i class="fa fa-mail-reply"></i> Back</button>
-                    <a class="btn btn-primary" onclick="cmdb_asset_create_fn()"><i class="fa fa-check"></i> Create</a>
+                    <button type="button" class="btn btn-default" onclick="window.history.go(-1)"><i class="fa fa-mail-reply"></i> 后退</button>
+                    <a class="btn btn-primary" onclick="cmdb_asset_create_fn()"><i class="fa fa-check"></i> 创建</a>
                 </div>
             </div>
 
