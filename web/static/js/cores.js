@@ -610,8 +610,13 @@
     }
 
     jq.extend({
-        'initMenu': function (target) {
+        'initMenu': function (target, target_parent) {
             $(target).addClass('active').siblings().removeClass('active');
+
+            if (target_parent) {
+                $(target_parent).addClass('active').siblings().removeClass('active');
+            }
+
         },
         'ChangePage' : function(pager) {
             initialize(pager)

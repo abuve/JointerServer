@@ -153,7 +153,7 @@
 
     <script>
         $(function () {
-            $.initMenu('#menu_project');
+            $.initMenu('#menu_project', '#parent_project');
             default_appviews_detail_fn({{ response.data.applications.all.0.id }})
         });
 

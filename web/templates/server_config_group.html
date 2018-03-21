@@ -200,7 +200,7 @@
 
     <script>
         $(function () {
-            $.initMenu('#menu_asset');
+            $.initMenu('#menu_server', '#parent_project');
 
             var groupTable = new GroupTableInit();
             groupTable.Init({{ response.data.id }});

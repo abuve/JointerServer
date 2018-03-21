@@ -121,7 +121,7 @@
 
     <script>
         $(function () {
-            $.initMenu('#menu_asset');
+            $.initMenu('#menu_server', '#parent_project');
 
             var logsTable = new LogsTableInit();
             logsTable.Init({{ response.data.id }});
