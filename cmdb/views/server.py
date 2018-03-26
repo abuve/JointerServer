@@ -47,30 +47,55 @@ class AssetCreateView(WriteAccessLogsMixin, LoginRequiredMixin, PermissionRequir
         return render(request, 'cmdb_asset_create.html', {'response': response})
 
 
-# def test(request):
-#
-#     from cmdb.service import asset_num
-#
-#     server_data = CMDB_MODELS.Server.objects.all()
-#     for obj in server_data:
-#         old_ip = obj.ipaddress.split('.')
-#         new_ip = '%s.%s.28.%s' % (old_ip[0], old_ip[1], old_ip[3])
-#
-#         obj.hostname = 'PRODUCTION-WEB-%s' % old_ip[3]
-#         obj.ipaddress = new_ip
-#         obj.asset.sn = asset_num.asset_num_builder()
-#         obj.configuration = '16C / 64GB / 2480GB'
-#         obj.asset.memo = '生产服务器'
-#         obj.manage_ip = '%s.10.28.%s' % (old_ip[0], old_ip[3])
-#         obj.cpu_count = 2
-#         obj.cpu_core_count = 8
-#         obj.cpu_model = 'Intel(R) Xeon(R) CPU E5640 @ 2.67GHz'
-#         obj.os_release = 'CentOS Linux release 7.2.1511 (Core)'
-#
-#         obj.save()
-#         obj.asset.save()
-#
-#     return HttpResponse(1)
+def test(request):
+
+    # from cmdb.service import asset_num
+    #
+    # server_data = CMDB_MODELS.Server.objects.all()
+    # for obj in server_data:
+    #     old_ip = obj.ipaddress.split('.')
+    #     new_ip = '%s.%s.28.%s' % (old_ip[0], old_ip[1], old_ip[3])
+    #
+    #     obj.hostname = 'PRODUCTION-WEB-%s' % old_ip[3]
+    #     obj.ipaddress = new_ip
+    #     obj.asset.sn = asset_num.asset_num_builder()
+    #     obj.configuration = '16C / 64GB / 2480GB'
+    #     obj.asset.memo = '生产服务器'
+    #     obj.manage_ip = '%s.10.28.%s' % (old_ip[0], old_ip[3])
+    #     obj.cpu_count = 2
+    #     obj.cpu_core_count = 8
+    #     obj.cpu_model = 'Intel(R) Xeon(R) CPU E5640 @ 2.67GHz'
+    #     obj.os_release = 'CentOS Linux release 7.2.1511 (Core)'
+    #
+    #     obj.save()
+    #     obj.asset.save()
+
+    import string, random
+    def asset_num_builder():
+        letters = 'abcdehjkoqu'
+        get_new_asset = ''.join(random.sample((letters + string.digits), 12))
+        return get_new_asset
+
+    docker_host = CMDB_MODELS.Asset.objects.filter(device_type_id=2).all()
+
+    for host in docker_host:
+        for i in range(0, 5):
+            insert_docker = CMDB_MODELS.DockerInstance(
+                asset_id = host.id,
+                obj_id = asset_num_builder(),
+                name = "docker-core-%s" % i,
+                cpu = random.sample([2, 4, 6, 8], 1)[0],
+                mem = random.sample([2, 4, 6, 8], 1)[0],
+                disk = random.sample([5, 10, 15, 20], 1)[0],
+                cpu_usage = '%.2f' % (random.random() * 100),
+                mem_usage = '%.2f' % (random.random() * 100),
+                disk_usage = '%.2f' % (random.random() * 100),
+                port = random.sample([6001, 7001, 8001, 8080], 1)[0],
+
+            )
+            insert_docker.save()
+
+    return HttpResponse(1)
 #
 #
 # def rsync_old_data(request):
